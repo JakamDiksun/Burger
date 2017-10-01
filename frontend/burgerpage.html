@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>BurgeRate</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="css/ratingstars.css" rel="stylesheet">
+    <link href="css/buttons.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<style type="text/css">
+.inline { 
+    margin:10px;
+    float:left;/*Add float left*/
+    margin :10px;
+}
+#tv {
+  width: 100%;
+  height: 100px;
+  position: relative;
+  background: #6496c8;
+  color: white;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-transform: uppercase;
+}
+#tv:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 20px solid #fff;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+}
+    .big-circle {
+        background-color: #036;
+        width: 100px;
+        height: 100px;
+        border-radius: 130px;
+        z-index: 5;
+        text-align: center;
+    }
+    .small-circle {
+        display: inline-block;
+        background-color: #66A212;
+        width: 70px;
+        height: 70px;
+        border-radius: 70px;
+        z-index: 5;
+        text-align: center;
+    }
+    .score-container {
+        font-size: 27px;
+        font-weight: bold;
+        color: #fff;
+        padding: 7px 10px;
+    }
+    .score-container-total {
+        font-size: 42px;
+        font-weight: bold;
+        color: #fff;
+        padding: 7px 10px;
+    }
+    .overall {
+        font-size: 10px;
+        font-weight: normal;
+        line-height: 1.5;
+    }
+    .ratingValue {
+        line-height: 1.3;
+    }
+   
+    textarea[type="text"] {
+        border: solid 5px #c9c9c9;
+        transition: border 0.3s;
+        width: 70%;
+        min-height: 100px;
+    }
+    textarea[type="text"]:focus,
+    textarea[type="text"].focus {
+     border: solid 5px #969696;
+    }
+
+
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
+   follow these rules. Every browser that supports :checked also supports :not(), so
+   it doesn’t make the test unnecessarily selective */
+
+
+</style>
+
+<script src="js/jquery.js"></script>
+<script src="scripts/burgers.js"></script>
+<script>
+    console.log("ok")
+    getBurgerDatas();
+</script>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html" style="font-size: 5em; padding-top: 20px;">BurgeRate</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">Read All New Messages</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li>
+                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">View All</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="signup.html" class="dropdown-toggle"><i class="fa fa-user"></i> Sign -up/-in</a>
+
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Index</a>
+                    </li>
+                    <li>
+                        <a href="toplist.html"><i class="fa fa-fw fa-bar-chart-o"></i> Toplist</a>
+                    </li>
+                    <li>
+                        <a href="map.html"><i class="fa fa-fw fa-edit"></i> Burger Map</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Search <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="#">Place</a>
+                            </li>
+                            <li>
+                                <a href="#">Burger</a>
+                            </li>
+                            <li>
+                                <a href="#">User</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> My History</a>
+                    </li>
+                    <li>
+                        <a href="forms.html"><i class="fa fa-fw fa-file"></i> User management</a>
+                    </li>
+                    <!--
+                    <li>
+                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+                    </li>-->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <br>
+                <div id="container" class="full-size">
+                    <!-- site map -->
+                    <div class="col-sm-2 empty-placeholder"></div>
+                    <div class="col-sm-10 site-map-container">
+                            <span>
+                                <div class="user-header">
+                                    <h1>
+                                    <span class="burgerName">BName</span>
+                                    </h1>
+                                </div>
+                            </span>
+                    </div>
+                    <div class="row columns-container">
+                    
+                        <div class="image-column col-sm-2"><center style = "width: 200px;">
+                            </br>
+                            <div style="padding-right: 10px">
+                                <a href="https://res.cloudinary.com/ratebeer/image/upload/w_250,c_limit/beer_44896.jpg">
+                                    <img itemprop="image" class="curvy" id="beerImg" border="0" src="http://inspectiondoc.com/wp-content/uploads/2014/08/sample-icon.png" style="max-height: 300px; max-width: 110px; height: auto; width: auto;" alt="" onerror="this.onerror=null;this.src='/images/icons/icon-beer.png';">
+                                </a>
+                            </div>
+                            <br>
+                            <br>
+                            <small>The picture is <br>illustration</small>
+                            <br></center>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="aggregate-rating-container">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div id="_aggregateRating6" class="inline"valign="top" align="left">
+                                                    <div  id="tv">
+                                                        <div class="score-container-total">
+                                                            <div class="overall">Total</div>
+                                                            <div class="pTotal">-</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="small-circle">
+                                                        <div class="score-container">
+                                                            <div class="overall">Taste</div>
+                                                            <div class="pTaste">-</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="small-circle">
+                                                        <div class="score-container">
+                                                            <div class="overall">Prep. time</div>
+                                                            <div class="pPrepareTime">-</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="small-circle">
+                                                        <div class="score-container">
+                                                            <div class="overall">Apperance</div>
+                                                            <div class="pApperance">-</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    </br>
+                                                    <div style="padding-bottom: 7px; line-height: 1.5;"><big>Made by <b><a href="placepage.html"><span class="placeName">PlaceName</span></a></b></big>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <section class="press">
+                                                    <button class="rate" onclick="showRateField();">Rate</button>
+                                                </section>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                            <div class="stats-container"><small><a name="number" title="Number of total ratings">RATINGS: <big style="color: #777;"><strong><span class="numberOfRatings">-</span></strong></big></a></small>
+                            </div>
+                            <br>
+                            <span class="description">-</span>
+                            <br>
+                         
+
+
+                            <div class="sorting-container">
+                                <span><a href="#">Top Burgers</a></span>
+
+                                <span> - </span>
+                                <span><a href="#">Compare</a></span>
+                                <!-- Add Beer Ticks Here ' JT sp_Ticks @Mode = G1 @BeerID -->
+                            </div>
+                            <br>
+
+                            <div class="response-success" style="background-color:#c1f2d1; border: 1px solid #9fc4aa; border-radius: 4px; display: none;" >  
+                                <button type="button" class="close" data-dismiss="modal" style="padding: 20px;" onclick="hideResponse();">&times;</button>
+                                <center><h2 style="color:#39754b">Rating was successful!
+                            
+                                    </h2>
+                                    </center></div>
+
+                            <div class="sendComment" style="background-color:#f5f5f5; border: 1px solid #ccc; border-radius: 4px; display: none;" >  
+                                <button type="button" class="close" data-dismiss="modal" style="padding: 20px;" onclick="hideRateField();">&times;</button>
+                                <table style="width:100%;">
+                                    
+                                    <tr>    
+                                        <td>
+                                            <h3 style="padding-left:250px;">Taste:</h3>
+                                        </td>
+                                        <td>
+                                            <fieldset class="rating" id="taste" style="padding-right:100px;">
+                                                <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Awesome!">5 stars</label>
+                                                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+                                                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+                                                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+                                                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Very bad">1 star</label>
+                                            </fieldset>
+                                        </td>
+                                    </tr>
+                                    <tr>    
+                                        <td>
+                                            <h3 style="padding-left:250px;">Prepare Time:</h3>
+                                        </td>
+                                        <td>
+                                            <fieldset class="rating" id= "prepare">
+                                                <input type="radio" id="prepstar5" name="prep" value="5" /><label for="prepstar5" title="Awesome!">5 stars</label>
+                                                <input type="radio" id="prepstar4" name="prep" value="4" /><label for="prepstar4" title="Pretty good">4 stars</label>
+                                                <input type="radio" id="prepstar3" name="prep" value="3" /><label for="prepstar3" title="Meh">3 stars</label>
+                                                <input type="radio" id="prepstar2" name="prep" value="2" /><label for="prepstar2" title="Kinda bad">2 stars</label>
+                                                <input type="radio" id="prepstar1" name="prep" value="1" /><label for="prepstar1" title="Very bad">1 star</label>
+                                            </fieldset>
+                                        </td>
+                                    </tr>    
+                                        <td>
+                                            <h3 style="padding-left:250px;">Appearance:</h3>
+                                        </td>
+                                        <td>
+                                            <fieldset class="rating" id="appear">
+                                                <input type="radio" id="appestar5" name="appe" value="5" /><label for="appestar5" title="Awesome!">5 stars</label>
+                                                <input type="radio" id="appestar4" name="appe" value="4" /><label for="appestar4" title="Pretty good">4 stars</label>
+                                                <input type="radio" id="appestar3" name="appe" value="3" /><label for="appestar3" title="Meh">3 stars</label>
+                                                <input type="radio" id="appestar2" name="appe" value="2" /><label for="appestar2" title="Kinda bad">2 stars</label>
+                                                <input type="radio" id="appestar1" name="appe" value="1" /><label for="appestar1" title="Very bad">1 star</label>
+                                            </fieldset>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <br>
+                                            <center>
+                                                <textarea class="comment" type="text" placeholder="Description"></textarea>
+
+                                            </center>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+
+                                                                                      <section style="float:right;" class="press">
+                                                                                          <br>
+                                                    <button class="send" onclick="sendRating();">Send</button>
+                                                </section> 
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br> 
+                            </div>
+                            <span class="likebtn-wrapper" data-theme="roundthumb" data-identifier="item_1"></span>
+                            
+                            <div class="reviews-container">
+<!--
+                                        <br>
+                                        <br>
+                                        <div style="padding: 0px 0px 0px 0px;">
+                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="https://res.cloudinary.com/ratebeer/image/upload/w_60,h_60,c_thumb,r_max,g_face/user_The_Osprey.jpg">
+                                            </div>
+                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="3.1 out of 5.0<br /><small>Aroma 5/10<br />Appearance 4/5<br />Taste 5/10<br />Palate 4/5<br />Overall 13/20<br /></small>">3.1</div>
+                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a id="count" class="userName" href="#">Name</a></small>
+                                        <br>
+                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;"></div>
+                                        <br>
+
+
+                                        <div style="padding: 0px 0px 0px 0px;">
+                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="/images/icons/icon-user.png">
+                                            </div>
+                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="4 out of 5.0<br /><small>Aroma 5/10<br />Appearance 5/5<br />Taste 8/10<br />Palate 4/5<br />Overall 18/20<br /></small>">4</div>
+                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a href="/user/470386/">TravisHayler&nbsp;(1)</a> - Littlehampton, West Sussex, ENGLAND - MAY 29, 2017 <a href="/RatingsQA.htm">does not count <img height="10" width="10" title="click to see why this rating of Butcombe Gold (Cask) does not count" src="/images/icons/questionmark.gif" align="middle" border="0"></a> </small>
+                                        <br>
+                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;">Great beer, very easy on the pallate and good day time drinking beer at 4.4% </div>
+                                        <br>
+                                        <div style="padding: 0px 0px 0px 0px;">
+                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="https://res.cloudinary.com/ratebeer/image/upload/w_60,h_60,c_thumb,r_max,g_face/user_Fatehunter.jpg">
+                                            </div>
+                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="3.3 out of 5.0<br /><small>Aroma 6/10<br />Appearance 5/5<br />Taste 6/10<br />Palate 3/5<br />Overall 13/20<br /></small>">3.3</div>
+                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a href="/user/160577/">Fatehunter&nbsp;(2567)</a> - Corbett, Oregon, USA - NOV 3, 2016</small>
+                                        <br>
+                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;">Pours a finger of head on a clear straw body. Aroma is fruits and mild grain. Taste has a nice stone fruit flavor with mild bitter. Texture is soft. </div>
+                                        <br>
+                                        <div style="padding: 0px 0px 0px 0px;">
+                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="https://res.cloudinary.com/ratebeer/image/upload/w_60,h_60,c_thumb,r_max,g_face/user_redders1974.jpg">
+                                            </div>
+                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="3.5 out of 5.0<br /><small>Aroma 6/10<br />Appearance 4/5<br />Taste 7/10<br />Palate 4/5<br />Overall 14/20<br /></small>">3.5</div>
+                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a href="/user/357380/">redders1974&nbsp;(1474)</a> - Greater Manchester, ENGLAND - JUL 16, 2016</small>
+                                        <br>
+                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;">On cask bolton cricket clubgolden lasting head good lacing good malts on this malty/bitter finish </div>
+                                        <br>
+                                        <table cellpadding="0" cellspacing="0" border="0" style="margin: 0px 0px 20px 0px;border-bottom: 1px solid #e0e0e0;">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="600" align="center">
+                                                        <div style="width: 468px;padding: 0px 10px 14px 10px;">-->
+                                                            <!-- beerpage468 -->
+                                                        <!--</div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div style="padding: 0px 0px 0px 0px;">
+                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="https://res.cloudinary.com/ratebeer/image/upload/w_60,h_60,c_thumb,r_max,g_face/user_Brandman.jpg">
+                                            </div>
+                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="2.2 out of 5.0<br /><small>Aroma 4/10<br />Appearance 3/5<br />Taste 4/10<br />Palate 2/5<br />Overall 9/20<br /></small>">2.2</div>
+                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a href="/user/85449/">Brandman&nbsp;(2950)</a> - Helsinki, FINLAND - APR 14, 2016</small>
+                                        <br>
+                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;">Cask. Just comments and numerals due to social interaction. Fudge, bisquit, nuts, earth </div>
+                                        <br>
+                                        <div style="padding: 0px 0px 0px 0px;">
+                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="https://res.cloudinary.com/ratebeer/image/upload/w_60,h_60,c_thumb,r_max,g_face/user_SarkyNorthener.jpg">
+                                            </div>
+                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="2.9 out of 5.0<br /><small>Aroma 5/10<br />Appearance 3/5<br />Taste 6/10<br />Palate 3/5<br />Overall 12/20<br /></small>">2.9</div>
+                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a href="/user/206213/">SarkyNorthener&nbsp;(4631)</a> - West Bromwich (Yorkshire Expat), West Midlands, ENGLAND - NOV 19, 2015</small>
+                                        <br>
+                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;">Cask@acorn Inn, Lichfield. Golden beer with medium head. Aroma is malts. Taste is malts, some hop bitterness, grass and a hint of butter. OK. </div>
+                                        <br>
+                                        <div style="padding: 0px 0px 0px 0px;">
+                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="https://res.cloudinary.com/ratebeer/image/upload/w_60,h_60,c_thumb,r_max,g_face/user_s_hartshorne.jpg">
+                                            </div>
+                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="3 out of 5.0<br /><small>Aroma 6/10<br />Appearance 3/5<br />Taste 6/10<br />Palate 3/5<br />Overall 12/20<br /></small>">3</div>
+                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a href="/user/289628/">s_hartshorne&nbsp;(2784)</a> - wakefield, West Yorkshire, ENGLAND - NOV 7, 2015</small>
+                                        <br>
+                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;">Cask samuel smiths corby!!! Amber thin head lace. Aroma toffee malts taste same some fruits lifht hoppy bitter finish ok body. Ok at best. </div>
+                                        <br>
+                                        <div style="padding: 0px 0px 0px 0px;">
+                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="https://res.cloudinary.com/ratebeer/image/upload/w_60,h_60,c_thumb,r_max,g_face/user_Stuu666.jpg">
+                                            </div>
+                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="3 out of 5.0<br /><small>Aroma 6/10<br />Appearance 3/5<br />Taste 6/10<br />Palate 3/5<br />Overall 12/20<br /></small>">3</div>
+                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a href="/user/178977/">Stuu666&nbsp;(13436)</a> - Edinburgh, SCOTLAND - NOV 7, 2015</small>
+                                        <br>
+                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;">Cask at the Guildford arms. Pours clear golden, nose is cereal, toffee, taste is sweet toffee, cereal, grainy, floral. </div>
+                                        <br>
+                                        <div style="padding: 0px 0px 0px 0px;">
+                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="https://res.cloudinary.com/ratebeer/image/upload/w_60,h_60,c_thumb,r_max,g_face/user_Towey1989.jpg">
+                                            </div>
+                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="2.9 out of 5.0<br /><small>Aroma 5/10<br />Appearance 4/5<br />Taste 6/10<br />Palate 3/5<br />Overall 11/20<br /></small>">2.9</div>
+                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a href="/user/352852/">Towey1989&nbsp;(2837)</a> - Stoke On Trent, Staffordshire, ENGLAND - OCT 28, 2015</small>
+                                        <br>
+                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;">Cask at The Roebuck, Leek (Titanic) A clear deep golden colour with a medium white head. Aroma of caramel, some fruit, slight biscuit and subtle earthy hops. Taste is similar of caramel, maybe butterscotch, some biscuit, slight fruit and subtle earthy hops. Light bodied and soft carbonation. A soft, earthy hop bitterness in the finish. Not a lot to say about this beer, boring but drinkable. </div>
+                                        <br>-->
+                            </div>
+
+                            <!-- end of .tag-container -->
+
+                            <br>
+
+
+                            <br>
+                            <br>
+
+                            <div id="taphunter-include" style="padding: 10px 14px; font-size: 12px; line-height: 1.5;"></div>
+
+                            <script src="https://www.taphunter.com/ratebeer/beer/44896.js"></script>
+
+                        </div>
+
+
+                    </div>
+                    <br>
+                    <br>
+                </div>
+                <br>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+ button.rate {
+        display: inline-block;
+        margin: 0 10px 0 250px;
+        padding: 15px 45px;
+        font-size: 25px;
+        line-height: 1.8;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    button.rate:focus {
+        outline: none
+    }
+    section.press button.rate {
+        color: #fff;
+        background-color: #6496c8;
+        border: none;
+        border-radius: 30px;
+        box-shadow: 10px 10px #27496d;
+    }
+
+    section.press button.rate:hover,
+    section.press button.rate.hover {
+        background-color: #417cb8
+    }
+
+    section.press button.rate:active,
+    section.press button.rate.active {
+        background-color: #417cb8;
+        box-shadow: 6px 6px #27496d;
+        transform: translateY(5px);
+    }
+
+
+     button.send {
+        display: inline-block;
+        margin: 0 10px 0 0;
+        padding: 10px 35px;
+        font-size: 18px;
+        line-height: 1.8;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    button.send:focus {
+        outline: none
+    }
+    section.press button.send {
+        color: #fff;
+        background-color: #6496c8;
+        border: none;
+        border-radius: 20px;
+        box-shadow: 7px 7px #27496d;
+    }
+
+    section.press button.send:hover,
+    section.press button.send.hover {
+        background-color: #417cb8
+    }
+
+    section.press button.send:active,
+    section.press button.send.active {
+        background-color: #417cb8;
+        box-shadow: 3px 3px #27496d;
+        transform: translateY(5px);
+    }

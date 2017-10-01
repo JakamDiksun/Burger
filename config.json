@@ -1,0 +1,17 @@
+{
+    "nodejs": {
+        "port": "3333"
+    },
+    "mysql":{
+        "host": "localhost",
+        "user": "webuser",
+        "password": "webpass",
+        "database": "mataharidb"
+    },
+    "client":{
+        
+    },
+    "log":{
+        "level":"DEBUG"
+    }
+}
