@@ -6,7 +6,7 @@
         "host": "localhost",
         "user": "webuser",
         "password": "webpass",
-        "database": "mataharidb"
+        "database": "hamburgerdb"
     },
     "client":{
         
