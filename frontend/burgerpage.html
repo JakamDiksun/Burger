@@ -31,6 +31,14 @@
 
 </head>
 <style type="text/css">
+        @font-face { font-family: JuneBug; src: url('BROMO.otf'); } 
+        c {
+            font-family: JuneBug
+        }
+         @font-face { font-family: Simple; src: url('Simple.ttf'); } 
+        td,d,span,div {
+            font-family: Simple
+        }
 .inline { 
     margin:10px;
     float:left;/*Add float left*/
@@ -38,13 +46,17 @@
 }
 #tv {
   width: 100%;
-  height: 100px;
+  height: 80px;
   position: relative;
-  background: #6496c8;
+  background: linear-gradient(to bottom, #6496c8, #3b5b7a);
   color: white;
   font-size: 11px;
   letter-spacing: 0.2em;
   text-align: center;
+  border-radius: 10px;
+                 /* background: linear-gradient(to bottom, #3a404d, #181c26);*/
+  border-radius: 10px;
+  box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
   text-transform: uppercase;
 }
 #tv:after {
@@ -54,7 +66,7 @@
   bottom: 0;
   width: 0;
   height: 0;
-  border-bottom: 20px solid #fff;
+  border-bottom: 20px solid dotted;
   border-left: 110px solid transparent;
   border-right: 110px solid transparent;
 }
@@ -68,9 +80,10 @@
     }
     .small-circle {
         display: inline-block;
-        background-color: #66A212;
-        width: 70px;
-        height: 70px;
+        background-color: #bc6939;
+        background: linear-gradient(to top,  #9e5024,#e28c5a);
+        width: 80px;
+        height: 60px;
         border-radius: 70px;
         z-index: 5;
         text-align: center;
@@ -122,7 +135,7 @@
     getBurgerDatas();
 </script>
 
-<body>
+<body >
 
     <div id="wrapper">
 
@@ -136,7 +149,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html" style="font-size: 5em; padding-top: 20px;">BurgeRate</a>
+                <a class="navbar-brand" href="index.html" style="font-size: 5em; padding-top: 20px;"><c>BurgeRate</c></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -265,7 +278,7 @@
             </div>
             <!-- /.navbar-collapse -->
         </nav>
-        <div id="page-wrapper">
+        <div id="page-wrapper"  style="background: radial-gradient(ellipse farthest-corner at center top, #fff482 0%, #bc853c 100%);">
             <div class="container-fluid">
                 <br>
                 <div id="container" class="full-size">
@@ -275,7 +288,7 @@
                             <span>
                                 <div class="user-header">
                                     <h1>
-                                    <span class="burgerName">BName</span>
+                                    <b><span class="burgerName">BName</span></b>
                                     </h1>
                                 </div>
                             </span>
@@ -334,7 +347,7 @@
                                             </td>
                                             <td>
                                                 <section class="press">
-                                                    <button class="rate" onclick="showRateField();">Rate</button>
+                                                    <button class="rate" onclick="showRateField();"><h1>Rate</h1></button>
                                                 </section>
                                             </td>
                                         </tr>
@@ -350,7 +363,7 @@
 
 
                             <div class="sorting-container">
-                                <span><a href="#">Top Burgers</a></span>
+                                <span><a href="/toplist.html">Top Burgers</a></span>
 
                                 <span> - </span>
                                 <span><a href="#">Compare</a></span>
@@ -365,15 +378,15 @@
                                     </h2>
                                     </center></div>
 
-                            <div class="sendComment" style="background-color:#f5f5f5; border: 1px solid #ccc; border-radius: 4px; display: none;" >  
-                                <button type="button" class="close" data-dismiss="modal" style="padding: 20px;" onclick="hideRateField();">&times;</button>
+                            <div class="sendComment"  style="border-style: solid; border-color: #244700; background: radial-gradient(ellipse farthest-corner at center top, #fff482 0%, #bc853c 100%); display: none;" >  
+                                <button type="button" class="close" data-dismiss="modal" style="padding: 20px;" onclick="hideRateField();">x</button>
                                 <table style="width:100%;">
                                     
                                     <tr>    
                                         <td>
                                             <h3 style="padding-left:250px;">Taste:</h3>
                                         </td>
-                                        <td>
+                                        <td class='star' style="font-family: none">
                                             <fieldset class="rating" id="taste" style="padding-right:100px;">
                                                 <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Awesome!">5 stars</label>
                                                 <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
@@ -387,7 +400,7 @@
                                         <td>
                                             <h3 style="padding-left:250px;">Prepare Time:</h3>
                                         </td>
-                                        <td>
+                                        <td style="font-family: none">
                                             <fieldset class="rating" id= "prepare">
                                                 <input type="radio" id="prepstar5" name="prep" value="5" /><label for="prepstar5" title="Awesome!">5 stars</label>
                                                 <input type="radio" id="prepstar4" name="prep" value="4" /><label for="prepstar4" title="Pretty good">4 stars</label>
@@ -400,7 +413,7 @@
                                         <td>
                                             <h3 style="padding-left:250px;">Appearance:</h3>
                                         </td>
-                                        <td>
+                                        <td style="font-family: none">
                                             <fieldset class="rating" id="appear">
                                                 <input type="radio" id="appestar5" name="appe" value="5" /><label for="appestar5" title="Awesome!">5 stars</label>
                                                 <input type="radio" id="appestar4" name="appe" value="4" /><label for="appestar4" title="Pretty good">4 stars</label>
@@ -414,7 +427,7 @@
                                         <td colspan="2">
                                             <br>
                                             <center>
-                                                <textarea class="comment" type="text" placeholder="Description"></textarea>
+                                                <textarea style="color:black !important" class="comment" type="text" placeholder="Description"></textarea>
 
                                             </center>
                                         </td>
@@ -424,7 +437,7 @@
 
                                                                                       <section style="float:right;" class="press">
                                                                                           <br>
-                                                    <button class="send" onclick="sendRating();">Send</button>
+                                                    <button class="send" onclick="sendRating();"><h1>Send</h1></button>
                                                 </section> 
                                         </td>
                                     </tr>

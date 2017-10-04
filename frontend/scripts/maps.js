@@ -13,6 +13,7 @@ var placeID =[];
 
 
     filter()
+    filter()
  
 
 
@@ -72,10 +73,10 @@ function loadMap() {
 
 function initMap() {
     var map = new google.maps.Map(document.getElementById('sample'), {
-        zoom: 8,
+        zoom: 13,
         center: {
-            lat: 47.204831,
-            lng: 19.301345
+            lat: 47.494599,
+            lng:  19.087718
         }
     });
     // Create an array of alphabetical characters used to label the markers.

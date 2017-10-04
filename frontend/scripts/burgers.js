@@ -14,23 +14,22 @@ function listBurgers(){
                       data +=                       
                        "<table class='table table-striped' cellpadding='30'>"+
                        "<tbody>"+
-                            "<tr>"+
-                                "<td style='vertical-align:middle; width:10%;'>"+
+                            "<tr'>"+
+                                "<td style='vertical-align:middle; width:10%; '>"+
                                     "<a href='burgerpage.html?Bid="+element.burgerID+"'>"+
                                     "<h1>"+
                                     element.burgerName+
                                     "</h1>"+
                                     "</a>"+
                                 "</td>"+
-                                "<td>"+
-                                
+                                "<td style='vertical-align:bottom !important;' align='right'>"+
+                                "<i>by <a href='placepage.html?Pid="+element.placeID+"'>"+
+                                element.placeName+
+                                "</i>"+
                                 "</td>"+
                             "</tr>"+
                             "<tr>"+
-                                "<td class='col-sm-2'><i>by <a href='placepage.html?Pid="+element.placeID+"'>"+
-                                element.placeName+
-                                "</i></td>"+
-                                "<td>"+
+                                "<td colspan='2'>"+
                                 element.description+
                                 "</td>"+
                             "</tr>"+
@@ -100,6 +99,9 @@ function getRatings(){
                             "</div>"+
                             "<div style='display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;'>"+element.pTotal.toString().substring(0,4)+"</div>"+
                         "</div><small style='color: #666666; font-size: 12px; font-weight: bold;'><a id='count' class='userName' href='#'>"+element.userName+"</a></small></td>"+
+                        "<td width='60%' valign='bottom' align='right'><small style='color:grey'>"+
+                        element.date.split(".")[0].replace("T","  :  ")+
+                        "</small></td>"+
                         "<td style='float:right;'>"+
                             "<b class='likes'>"+element.likes+"</b><h1><i href='#' onclick='sendLike(this,"+element.ratingID+")' value='off' class='fa fa-thumbs-o-up'style='cursor: pointer;' ></i></h1></td></tr></table>"+
                         "<br>"+

@@ -195,6 +195,56 @@ try {
     console.log("Error accessing GET/places endpoint!" + err);
 }
 try {
+    app.get('/place/datas/:placeID', function(req, res) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        var placeID = req.params.placeID;
+        pool.getConnection(function(err, connection) {
+            connection.query("SELECT burgers.burgerID, burgers.burgerName, Burgers.placeID from Burgers, Ratings, Places Where Burgers.placeID = ? group by burgers.burgerID;",[placeID], function(err, rows, fields) {
+                connection.release(); //release the connection
+                if (!err) {
+                    writelog("debug", "GET/places");
+                    res.send(rows);
+                } else {
+                    writelog("error", "Error at endpoint GET/places " + err);
+                }
+            });
+
+            // connection.release(); //release the connection
+        });
+    });
+} catch (err) {
+    console.log("Error accessing GET/places endpoint!" + err);
+}
+try {
+    app.get('/place/ratings/:placeID', function(req, res) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        var placeID = req.params.placeID;
+        var query = "Select burgers.burgerID, burgers.burgerName, "+
+                        "avg(Ratings.pTaste) as pTaste, "+
+                        "avg(Ratings.pPrepareTime) as pPrepareTime, "+
+                        "avg(Ratings.pApperance) as pApperance, "+
+                        "avg(Ratings.pTotal) as pTotal, "+
+                        "count(ratings.pTotal) AS count "+
+                        "From Ratings, Burgers Where burgers.burgerID = Ratings.burgerID AND burgers.placeID = ?  AND ratings.burgerID = burgers.burgerID  group by burgers.burgerName;"
+        pool.getConnection(function(err, connection) {
+            connection.query(query,[placeID], function(err, rows, fields) {
+                connection.release(); //release the connection
+                if (!err) {
+                    writelog("debug", "GET/places");
+                    res.send(rows);
+                } else {
+                    writelog("error", "Error at endpoint GET/places " + err);
+                }
+            });
+
+            // connection.release(); //release the connection
+        });
+    });
+} catch (err) {
+    console.log("Error accessing GET/places endpoint!" + err);
+}
+
+try {
     app.get('/places/:placeID', function(req, res) {
         res.setHeader("Access-Control-Allow-Origin", "*");
         var placeID = req.params.placeID;
@@ -244,7 +294,7 @@ try {
 try {
     app.get('/burgers', function(req, res) {
         pool.getConnection(function(err, connection) {
-            connection.query("SELECT burgers.burgerID, burgers.burgerName, places.placeName, burgers.description FROM burgers, places WHERE burgers.placeID = places.placeID;", function(err, rows, fields) {
+            connection.query("SELECT burgers.burgerID, burgers.burgerName, places.placeName, places.placeID, burgers.description FROM burgers, places WHERE burgers.placeID = places.placeID;", function(err, rows, fields) {
                 connection.release(); //release the connection
                 if (!err) {
                     writelog("debug", "GET/burgers");
@@ -286,6 +336,7 @@ try {
 } catch (err) {
     console.log("Error accessing GET/burgerID/:burgersID endpoint!" + err);
 }
+
 try {
     app.get('/burgerpage.html/:burgerID', function(req, res) {
         res.setHeader("Access-Control-Allow-Origin", "*");
@@ -406,7 +457,47 @@ try {
 } catch (err) {
     console.log("Error accessing GET/likes/:burgerID/:userID endpoint!" + err);
 }
-
+try {
+    app.get('/toplist/burgers/:type',function(req,res){
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        var viewvpoint = "";
+        console.log(req.params.type)
+        switch (parseInt(req.params.type)) {
+            case 1:
+                viewvpoint = "pTaste";
+                break;
+            case 2:
+                viewvpoint = "pPrepareTime";
+                break;
+            case 3:
+                viewvpoint = "pApperance";
+                break;
+            case 4:
+                viewvpoint = "pTotal";
+                break;
+        }
+        var query = "Select burgers.burgerID, burgers.burgerName, "+
+                        " avg(Ratings.pTaste) as pTaste,"+ 
+                        " avg(Ratings.pPrepareTime) as pPrepareTime, "+
+                        " avg(Ratings.pApperance) as pApperance, "+
+                        " avg(Ratings.pTotal) as pTotal "+
+                    "From Ratings, Burgers Where burgers.burgerID = Ratings.burgerID group by burgers.burgerName order by "+viewvpoint+" desc;";
+        console.log(query);
+        pool.getConnection(function(err, connection) {
+            connection.query(query, function(err, rows, fields) {
+                connection.release();
+                if (!err) {
+                    writelog("debug", "GET/toplist/burgers/");
+                    res.send(rows);
+                } else {
+                    res.send('Error');
+                }
+            });
+        });
+    });
+} catch (err) {
+    console.log("Error accessing GET/toplist/burgers endpoint!" + err);
+}
  //connection.end();
 
 users = [];

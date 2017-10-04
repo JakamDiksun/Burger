@@ -4678,7 +4678,7 @@ fieldset[disabled] .navbar-default .btn-link:hover {
     color: #ccc
 }
 .navbar-inverse {
-    background-color: #222;
+    background: linear-gradient(to right, #3a404d, #181c26);
     border-color: #080808
 }
 .navbar-inverse .navbar-brand {

@@ -12,34 +12,69 @@
     <title>BurgeRate - Sign up</title>
     <link href="css/bootstrapLogin.min.css" rel="stylesheet">
     <link href="css/sb-admin-Login.css" rel="stylesheet">
+    <link href="croppic/croppic.css" rel="stylesheet">
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
     <script src="scripts/signup.js"></script>
+    <script src="croppic/croppic.js"></script>
+    <script src="croppic/croppic.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <link rel="stylesheet" href="croppie.css" />
+<script src="croppie.js"></script>
     <style>
+            @font-face { font-family: JuneBug; src: url('BROMO.otf'); } 
+        c {
+            font-family: JuneBug
+        }
+         @font-face { font-family: Simple; src: url('Simple.ttf'); } 
+        td,d {
+            font-family: Simple
+        }
     img {
     max-width: 100%;
     height: auto;
 }
+		#yourId {
+			width: 200px;
+			height: 150px;
+			position:relative; /* or fixed or absolute */
+		}
 </style>
     <script>
-        
+	$uploadCrop = $('#item').croppie({
+    enableExif: true,
+    viewport: {
+        width: 200,
+        height: 200,
+        type: 'circle'
+    },
+    boundary: {
+        width: 300,
+        height: 300
+    }
+});
     </script>
 </head>
 
-<body>
-    <center>    
-<table> 
+<body  style="background: radial-gradient(ellipse farthest-corner at center top, #fff482 0%, #bc853c 100%);">
+
+    <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style='height:71px !important;'>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html" style="font-size: 5em; padding-top: 25px;"><c>BurgeRate<c></a>
+            </div>
+        </nav>
+    </div>
+    <center style="height: 1060px !important;">    
+<table > 
     <tbody> 
         <tr>
-                        <td>
-                
-                <!-- jQuery -->
-                
-
-                <!-- jQuery -->
-                
-            </td>
             <td>
                 <div class="container">
                     <div class="row">
@@ -75,6 +110,8 @@
                                                 <input class="form-control" id="inp" type='file'>
                                                     <br>    
                                             </div>
+                                             <div class="demo"></div>
+                                            
                                             <a onclick="doRegister();" class="btn btn-lg btn-info btn-block">Register</a><p id="b64" style="display:none;"></p>
                                         </fieldset>
                                     </form>

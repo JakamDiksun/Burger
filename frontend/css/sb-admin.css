@@ -122,7 +122,7 @@ ul.alert-dropdown {
         border: none;
         border-radius: 0;
         overflow-y: auto;
-        background-color: #222;
+        background: linear-gradient(to right, #3a404d, #181c26);
         bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;

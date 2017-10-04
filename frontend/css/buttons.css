@@ -1,4 +1,19 @@
- button.rate {
+button.rate, button.send{
+  background: linear-gradient(to bottom, #3a404d, #181c26);
+  border-radius: 10px;
+  box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
+  padding: 15px 45px;
+margin: 0 10px 0 250px;
+}
+button.rate h1, button.send h1{
+  font-size: 26px;
+  color: #e1e1e1;
+  margin: 5px;
+  
+
+}
+
+/* button.rate {
         display: inline-block;
         margin: 0 10px 0 250px;
         padding: 15px 45px;
@@ -63,4 +78,6 @@
         background-color: #417cb8;
         box-shadow: 3px 3px #27496d;
         transform: translateY(5px);
-    }
+    }*/
+
+    
