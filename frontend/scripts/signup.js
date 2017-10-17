@@ -85,6 +85,79 @@ if(document.getElementById("img").src==""){
   }
 
   
+  function addCookies(){
+        req = new XMLHttpRequest();
+        var ip = location.host;
+        var url = "http://"+ip+"/userlogin";
+        req.open("PUT", url, true);
+        req.setRequestHeader("authtoken", getCookie("token"))
+        req.setRequestHeader("Content-type", "application/json");
+        var username = $("input[name='username']").val();
+        var password =  $("input[name='password']").val();
+        req.onreadystatechange = function () {
+                if (req.readyState == 4 && req.status == 200) {
+                   if (req.responseText == "Error"){
+                       var messageNode = "<h5 class='err'><font color='red'>Wrong e-mail or password !</font></h5>";
+                       document.querySelector("div[name='err_userName']").innerHTML = messageNode;
+                       return false
+                   }else{
+                        var json = JSON.parse(req.responseText);
+                        var userID = json.userID;
+                        var token = json.authtoken;
+                        var userName = json.userName;
+                        var email = json.email;
+                        document.cookie = "userID="+userID
+                        document.cookie = "token="+token;
+                        document.cookie = "userName="+userName;
+                        document.cookie = "email="+email;
+                        window.location = "http://"+ip+"/";
+                        return true  
+                   }
+                }
+        }
+        var userData = JSON.stringify(
+            {
+                email: email,
+                password: password
+            }
+        );
+        console.log(userData);
+        req.send(userData);
+  }
+  function doLogOut(){
+            
+            var userID = getCookie("username");
+            req = new XMLHttpRequest();
+            var ip = location.host;
+            var url = "http://"+ip+"/userlogout";
+            req.open("PUT", url, true);
+            req.setRequestHeader("authtoken", getCookie("token"))
+            req.setRequestHeader("Content-type", "application/json");
+            req.onreadystatechange = function () {
+                    if (req.readyState == 4 && req.status == 200) {
+                        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                        document.cookie = "userID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                        document.cookie = "userName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                        document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                        console.log("Logged-out");
+                        return true;
+                    }
+                    else if (req.readyState == 4 && req.status != 200) {
+                      alert("Hiba a kijelentkezés során!" + req.status);
+                      
+                      return false;
+                    }
+            }
+            var data = JSON.stringify(
+                {
+                    "userID" : userID,
+                }
+            );
+            //console.log("dat: "+data);
+            req.send(data);
+        }
+
+
 function getCookie(name) {
   var value = "; " + document.cookie;
   var parts = value.split("; " + name + "=");

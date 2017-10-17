@@ -37,7 +37,7 @@ function listBurgers(){
                         "</table><br>";
                         
                     $("div[name='datas']").append(data);
-                    console.log(data) 
+                   // console.log(data) 
                 }, this);  
                 
                     
@@ -120,7 +120,7 @@ function getLikes(){
     req = new XMLHttpRequest();
     var ip = location.host;
     var burgerID = getUrlVars().Bid;
-    var userID = 2;
+    var userID = globalID;
     var url = "http://"+ip+"/likes/"+burgerID+"/"+userID;
     req.open("GET", url, true);
     req.send();
@@ -142,7 +142,7 @@ function sendRating(){
     var appear = $("#appear").find(":checked").val();
     var total = (parseInt(taste)+parseInt(prepare)+parseInt(appear))/3;
     var comment = $(".comment").val();
-    var userID = 2;
+    var userID = globalID;
     req = new XMLHttpRequest();
     var ip = location.host;
     var url = "http://"+ip+"/rate";
@@ -193,7 +193,7 @@ function sendLike(x,id){
             isLike = false;
     }
     var burgerID = getUrlVars().Bid.replace("#","");
-    var userID = 2;
+    var userID = globalID;
     req = new XMLHttpRequest();
     var ip = location.host;
     var url = "http://"+ip+"/like";

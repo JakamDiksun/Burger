@@ -1,9 +1,13 @@
-var express = require('express');
+const express = require('express');
+const passport = require('passport');
+const expressSession = require('express-session');
 var bodyParser = require('body-parser');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 var nconf = require('nconf');
+var LocalStrategy = require('passport-local').Strategy;
+var flash = require('connect-flash');
 
 //var database = require('./config/database.js');
 
@@ -23,6 +27,167 @@ var pool = mysql.createPool({
     multipleStatements: true
 });
 
+
+var User = {
+    userID: -1,
+    userName: "",
+    findById: function(id, callback) {
+        callback(null, this);
+
+    }
+}
+
+app.use(expressSession({
+    secret: 'mySecretKey',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 2628000000
+    }
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(bodyParser.json({
+    limit: '100mb'
+}));
+app.use(bodyParser.urlencoded({
+    limit: '100mb',
+    extended: true
+}));
+app.use(bodyParser.json());
+app.use(flash());
+app.use('/', require('./router.js')(passport));
+
+passport.serializeUser(function(user, done) {
+    try{
+        //log.debug("Session serialized for " + user);
+        writelog("debug", "Session serialized for user with ID: " + user);
+        done(null, user);
+    }catch(err){
+        writelog("error", "Error at serializing user: " + err);
+        //log.error("Error at serializing user: " + err);
+    }
+});
+
+passport.deserializeUser(function(id, done) {
+    //writelog("debug","Passport deserialized: Belép."); //1
+    try {
+       // writelog("debug","Passport deserialized TRY in."); //2
+        pool.getConnection(function(err, connection) {
+            //writelog("debug","Passport deserialized POOL in."); //3
+            connection.query("select * from users where userID = ?;",[id], function(err, rows) {
+                //writelog("debug","Passport deserialized QUERY in."); //4
+                connection.release(); 
+                if(err || !id){
+                    writelog("error", "Error at deserializing user: " + err);
+                    //log.error("Error at deserializing user: " + err);
+                    done(err, null);
+                }else{
+                    //writelog("debug", "Deserializing user with ID: "+id+" succesful!"); //5
+                    //log.debug( "Deserializing user with ID: "+id+" succesful!");
+                    done(null, rows[0]);
+                }
+                writelog("debug","Passport deserialized QUERY end."); //6
+            });
+            
+            //writelog("debug","Passport deserialized POOL end."); //7
+
+        });
+            //writelog("debug","Passport deserialized TRY end."); //8
+    } catch (err) {
+        writelog("error", "Error at deserializing user: " + err);
+        log.error("Error at deserializing user: " + err);
+    }
+});
+try{
+    passport.use('login', new LocalStrategy({
+            username: 'username',
+            password: 'password',
+            passReqToCallback: true // allows us to pass back the entire request to the callback
+        },
+        function(req, username, password, done) { // callback with email and password from our form
+            pool.getConnection(function(err, connection) {
+                var TokenGenerator = require('token-generator')({
+                    salt: 'your secret ingredient for this magic recipe',
+                    timestampMap: 'abcdefghij', // 10 chars array for obfuscation proposes
+                });
+                var token = TokenGenerator.generate();
+                if (err) {
+                    console.log("Error: " + err)
+                    writelog("error", "Error during login: " + err);
+                } else {
+                    var query = "SELECT userID,userName FROM USERS WHERE username = ? AND password = ?; Update Users SET  authtoken = ? WHERE username = ? AND password = ? ;";
+                    connection.query(query, [username,password,token,username,password], function(err, rows, fields) {
+                        //console.log("us:",rows[1][0]["password"]);
+                        connection.release(); //release the connection
+                        if (err) {
+                            console.log("Error: " + err)
+                            writelog("error", "Error during login: " + err);
+                            //log.error("Error during login: " + err);
+                        }
+                        if (!rows.length) {
+                            console.log("Wrong user");
+                            writelog("error", "Error: No user found.");
+                            //log.error("Error: No user found.");
+                            return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
+                        }
+                        console.log(rows[1]);
+                        console.log(token+","+username+","+password);
+                        /*if (!(rows[1][0]["password"] == password)) {
+                            writelog("error", "Error: Wrong password.");
+                            log.error("Error: Wrong password.");
+                            return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+                        }*/
+                        if(rows[0][0]){
+                            var data = ({
+                                "userID": rows[0][0]["userID"],
+                                "userName": rows[0][0]["userName"],
+                                "token": token
+                            });
+                            User = data;
+                            console.log("user: ",data.userID)
+                            writelog("debug", "User login succesful: " + User);
+                            //log.debug("User login succesful: " + User);
+                            return done(null, data.userID);
+                        }else{
+                            return done(null);
+                        }
+
+                    });
+                }
+
+            });
+        }));
+
+}catch(err){
+    log.error("Error at passport login! " + err);
+    console.log("Error at passport login! " + err);
+}
+try {
+    app.put('/userlogout', function(req, res) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        var userID = req.body.userID;
+        writelog("debug","UserID: "+ userID);
+        pool.getConnection(function(err, connection) {
+            connection.query("UPDATE Users SET authtoken = null WHERE userID = ?;", [userID], function(err, rows, fields) {
+                connection.release(); //release the connection
+                if (!err) {
+                    //log.debug("PUT/userlogout Token deleted for user with ID: " + userID);
+                    writelog("debug", "PUT/userlogout Token deleted for user with ID: " + userID);
+                    res.send(rows);
+                } else {
+                    //log.error("Error at endpoint PUT/userlogout " + err);
+                    writelog("error", "Error at endpoint PUT/userlogout " + err);
+                    res.send('Error');
+                }
+            });
+            //connection.release(); //release the connection
+        });
+    });
+} catch (err) {
+    log.error("Error accessing PUT/userlogout endpoint! " + err);
+    console.log("Error accessing PUT/userlogout endpoint! " + err);
+}
 app.use(bodyParser.json());
 app.post('/getquery',function(req,res){
     var body = req.body;
@@ -47,6 +212,7 @@ app.post('/getquery',function(req,res){
         }
     });
 });
+
 
 try {
     app.get('/users', function(req, res) {
@@ -87,8 +253,58 @@ try {
     });
 } catch (err) {
     console.log("Error accessing GET/user/:userID endpoint!" + err);
-}
-
+}/*
+try {
+    app.put('/userlogin', function(req, res) {
+        var email = req.body.email;
+        var password = req.body.password;
+        var TokenGenerator = require('token-generator')({
+            salt: 'your secret ingredient for this magic recipe',
+            timestampMap: 'abcdefghij', // 10 chars array for obfuscation proposes 
+        });
+        var token = TokenGenerator.generate();
+        //console.log("tokenn:: "+token);
+        var query = "SELECT userID,userName,email,authtoken FROM USER WHERE userName = ? AND password = ? ;";
+        pool.getConnection(function(err, connection) {
+            connection.query(query, [email, password], function(err, rows, fields) {
+                connection.release(); //release the connection
+                if (!err) {
+                    if (rows == "") {
+                        log.error("Error at endpoint PUT/userlogin. Invalid e-mail or password. " + err);
+                        writelog("error", "Error at endpoint PUT/userlogin. Invalid e-mail or password. " + err);
+                        res.send("Error");
+                    } else {
+                        //console.log(rows[0])
+                        try {
+                            var data = JSON.stringify({
+                                "userID": rows[0][0]["userID"],
+                                "userName": rows[0][0]["userName"],
+                                "email": rows[0][0]["email"],
+                                "token": token
+                            });
+                            log.debug("PUT/userlogin Token inserted for user with e-mail: " + email);
+                            writelog("debug", "PUT/userlogin Token inserted for user with e-mail: " + email);
+                            rows[0].authtoken=token;
+                            res.send(rows[0]);
+                        } catch (err) {
+                            log.error("Error at endpoint PUT/userlogin " + err);
+                            writelog("error", "Error at endpoint PUT/userlogin " + err);
+                            res.send('Error');
+                        }
+                    }
+                } else {
+                    log.error("Error at endpoint PUT/userlogin " + err);
+                    writelog("error", "Error at endpoint PUT/userlogin " + err);
+                    res.send('Error');
+                }
+            });
+            //connection.release(); //release the connection
+        });
+    });
+} catch (err) {
+    log.error("Error accessing PUT/userlogin endpoint! " + err);
+    console.log("Error accessing PUT/userlogin endpoint! " + err);
+}*/
 try {
     app.post('/users/post', function(req, res) {
         res.setHeader("Access-Control-Allow-Origin", "*");
