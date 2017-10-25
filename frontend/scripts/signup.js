@@ -52,7 +52,7 @@ if(document.getElementById("img").src==""){
                     
                          if(req.responseText=="OK"){
                              alert("Registration was successful!");
-                             window.location = "http://"+ip+"/index.html";
+                             window.location = "http://"+ip+"/burgerlist.html";
                          }else if(req.responseText=="Empty"){
                             var messageNode = "<h5 class='err'><font color='red'>Please fill all the fields!</font></h5>";
                             console.log(messageNode);

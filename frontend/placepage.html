@@ -18,6 +18,7 @@
     <link href="css/sb-admin.css" rel="stylesheet">
     <link href="css/ratingstars.css" rel="stylesheet">
     <link href="css/buttons.css" rel="stylesheet">
+    <link href="css/fonts.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -30,24 +31,6 @@
     <![endif]-->
 
 </head>
-<style type="text/css">
-
-        @font-face { font-family: JuneBug; src: url('BROMO.otf'); } 
-        c {
-            font-family: JuneBug
-        }
-         @font-face { font-family: Simple; src: url('Simple.ttf'); } 
-        td,d {
-            font-family: Simple
-        }
-
-/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
-   follow these rules. Every browser that supports :checked also supports :not(), so
-   it doesn’t make the test unnecessarily selective */
-
-
-</style>
-
 <script src="js/jquery.js"></script>
 <script src="scripts/places.js"></script>
 <script>
@@ -69,7 +52,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html" style="font-size: 5em; padding-top: 20px;"><c>BurgeRate<c></a>
+                <a class="navbar-brand" href="burgerlist.html" style="font-size: 5em; padding-top: 20px;"><c>BurgeRate<c></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -162,7 +145,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> <d>Index<d></a>
+                        <a href="burgerlist.html"><i class="fa fa-fw fa-dashboard"></i> <d>Burgers</d></a>
                     </li>
                     <li>
                         <a href="toplist.html"><i class="fa fa-fw fa-bar-chart-o"></i><d> Toplist</d></a>
@@ -188,7 +171,7 @@
                         <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i><d> My History</d></a>
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-fw fa-file"></i><d> User management</d></a>
+                        <a href="manage.html"><i class="fa fa-fw fa-file"></i><d> User management</d></a>
                     </li>
                     <!--
                     <li>
@@ -198,7 +181,7 @@
             </div>
             <!-- /.navbar-collapse -->
         </nav>
-        <div id="page-wrapper" style="background: radial-gradient(ellipse farthest-corner at center top, #fff482 0%, #bc853c 100%) !important;">
+        <div id="page-wrapper">
             <div class="container-fluid">
                 <br>
                 <div id="container" class="full-size">

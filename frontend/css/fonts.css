@@ -1,0 +1,12 @@
+@font-face { font-family: JuneBug; src: url('BROMO.otf'); } 
+c {
+    font-family: JuneBug
+}
+    @font-face { font-family: Simple; src: url('Simple.ttf'); } 
+td,d,span,div {
+    font-family: Simple
+}
+
+#page-wrapper{
+    background: radial-gradient(ellipse farthest-corner at center top, #fff482 0%, #bc853c 100%) !important;
+}

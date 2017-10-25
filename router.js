@@ -14,12 +14,10 @@ var connection = mysql.createConnection({
 module.exports = function(passport){
     var router = express.Router();
   /* GET login page. */
-  router.get('/', function(req, res) {
-    res.sendFile(__dirname + '/frontend/toplist.html');   
-  });
+
 
   router.get('/login', passport.authenticate('login', {
-    successRedirect: '/index.html',
+    successRedirect: '/burgerlist.html',
     failureRedirect: 'back',
     failureFlash : true 
   }));
@@ -34,6 +32,7 @@ module.exports = function(passport){
     failureFlash : true 
   }));*/
   var isAuthenticated = function (req, res, next) {
+    console.log(req.user);
       if (req.isAuthenticated()){
           //res.user = req.user;
           console.log("LOGGED IN");
@@ -46,13 +45,18 @@ module.exports = function(passport){
     var isLogin = function (req, res, next) {
           return next();
   }
-
-
-  router.get('/index.html', isAuthenticated, function(req, res){
+  router.get('/',isAuthenticated, function(req, res) {    
     var userDataString = req.user.userID+"|"+req.user.permission;
     delete req.headers['user'];
     res.setHeader("user",userDataString);
-    res.sendFile(__dirname + '/frontend/index.html'); 
+    res.sendFile(__dirname + '/frontend/burgerlist.html');   
+  });
+
+  router.get('/burgerlist.html', isAuthenticated, function(req, res){
+    var userDataString = req.user.userID+"|"+req.user.permission;
+    delete req.headers['user'];
+    res.setHeader("user",userDataString);
+    res.sendFile(__dirname + '/frontend/burgerlist.html'); 
   });
   router.get('/toplist.html', isAuthenticated, function(req, res){
     var userDataString = req.user.userID+"|"+req.user.permission;
@@ -66,14 +70,27 @@ module.exports = function(passport){
     res.setHeader("user",userDataString);
     res.sendFile(__dirname + '/frontend/burgerpage.html'); 
   });
-  router.get('/charts.html', isAuthenticated, function(req, res){
-    res.sendFile(__dirname + '/frontend/charts.html'); 
+  router.get('/map.html', isAuthenticated, function(req, res){
+    var userDataString = req.user.userID+"|"+req.user.permission;
+    delete req.headers['user'];
+    res.setHeader("user",userDataString);
+    res.sendFile(__dirname + '/frontend/map.html'); 
   });
-  router.get('/broadcast-message.html', isAuthenticated, function(req, res){
-    res.sendFile(__dirname + '/frontend/broadcast-message.html'); 
+  router.get('/placepage.html', isAuthenticated, function(req, res){
+    var userDataString = req.user.userID+"|"+req.user.permission;
+    delete req.headers['user'];
+    res.setHeader("user",userDataString);
+    res.sendFile(__dirname + '/frontend/placepage.html'); 
   });
-  router.get('/leaderboard.html', isAuthenticated, function(req, res){
-    res.sendFile(__dirname + '/frontend/leaderboard.html'); 
+  router.get('/manage.html', isAuthenticated, function(req, res){
+    var userDataString = req.user.userID+"|"+req.user.permission;
+    delete req.headers['user'];
+    res.setHeader("user",userDataString);
+    if (req.user.permission < 2){
+      console.log("Forbidden page!");
+      res.redirect('/blank.html');
+    }
+    res.sendFile(__dirname + '/frontend/manage.html'); 
   });
   router.get('/manage.html', isAuthenticated, function(req, res){
     res.sendFile(__dirname + '/frontend/manage.html'); 
@@ -103,7 +120,7 @@ module.exports = function(passport){
           req.logOut();
           req.logout();
           res.cookie('connect.sid', '', {expires: new Date(1), path: '/' });
-          res.redirect('/index.html');
+          res.redirect('/login.html');
       });
     console.log(req.session);
       

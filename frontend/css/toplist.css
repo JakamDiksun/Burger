@@ -10,7 +10,6 @@ body {
   margin: 0;
   background: radial-gradient(ellipse farthest-corner at center top, #fff482 0%, #bc853c 100%);
   color: #fff;
-  font-family: 'Open Sans', sans-serif;
 }
 .pick1 {
   position: absolute;
@@ -239,7 +238,7 @@ body {
 }
 .leaderboard ol li:hover::after {
   opacity: 1;
-  transform: scaleX(1.06) scaleY(1.03);
+  transform: scaleX(1.05) scaleY(1.05);
 }
 .leaderboard ol li:hover mark::before, .leaderboard ol li:hover mark::after {
   opacity: 1;

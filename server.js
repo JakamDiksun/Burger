@@ -228,7 +228,7 @@ try {
             });
 
             // connection.release(); //release the connection
-        });
+        }); 
     });
 } catch (err) {
     console.log("Error accessing GET/user endpoint!" + err);
@@ -727,7 +727,7 @@ app.use('/js', express.static('frontend/js'));
 app.use('/font-awesome', express.static('frontend/font-awesome'));
 
 app.get('/',function(req,res){
-    res.sendFile(__dirname + '/frontend/index.html');
+    res.sendFile(__dirname + '/frontend/burgerlist.html');
 });
 
 app.use(express.static('frontend'));

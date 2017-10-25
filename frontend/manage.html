@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>BurgeRate</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/buttons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="css/fonts.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script src="scripts/usermgmt.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<style>
+    th,
+    td {
+        vertical-align: middle !important;
+        text-align: left;
+    }
+
+    .collapse navbar-collapse navbar-ex1-collapse {
+        height: 120px !important;
+    }
+
+    tr.tbl:hover {
+        /*background-color: #77252B !important;*/
+
+        background-color: #9e4047 !important;
+        color: #eeeeee !important;
+    }
+
+    th.tbl {
+        background-color: #77252B;
+        width: 150px;
+        color: white;
+    }
+
+    button {
+        color: black !important;
+    }
+
+    .button {
+        position: absolute;
+        margin-left: 40px;
+        /*104.5px is half of the button's width*/
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        width: 100%;
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        justify-content: center;
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        justify-content: center;
+        border: 1px solid #888;
+        width: 23%;
+        vertical-align: middle;
+    }
+
+    .close {
+        color: black;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="burgerlist.html" style="font-size: 5em; padding-top: 25px;">
+                <c>BurgeRate</c>
+            </a>
+        </div>
+        <!-- Top Menu Items -->
+        <ul class="nav navbar-right top-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
+                        class="caret"></b></a>
+                <ul class="dropdown-menu message-dropdown">
+                    <li class="message-preview">
+                        <a href="#">
+                            <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                <div class="media-body">
+                                    <h5 class="media-heading"><strong>John Smith</strong>
+                                    </h5>
+                                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="message-preview">
+                        <a href="#">
+                            <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                <div class="media-body">
+                                    <h5 class="media-heading"><strong>John Smith</strong>
+                                    </h5>
+                                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="message-preview">
+                        <a href="#">
+                            <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                <div class="media-body">
+                                    <h5 class="media-heading"><strong>John Smith</strong>
+                                    </h5>
+                                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="message-footer">
+                        <a href="#">Read All New Messages</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b
+                        class="caret"></b></a>
+                <ul class="dropdown-menu alert-dropdown">
+                    <li>
+                        <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                    </li>
+                    <li>
+                        <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                    </li>
+                    <li>
+                        <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+                    </li>
+                    <li>
+                        <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+                    </li>
+                    <li>
+                        <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+                    </li>
+                    <li>
+                        <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">View All</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="/logout" method="get" onclick="doLogOut();"><i class="glyphicon glyphicon-log-in"></i> Log-out
+                </a>
+
+            </li>
+        </ul>
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li class="active">
+                    <a href="burgerlist.html"><i class="fa fa-fw fa-dashboard"></i>
+                        <d>Burgers</d>
+                    </a>
+                </li>
+                <li>
+                    <a href="toplist.html"><i class="fa fa-fw fa-bar-chart-o"></i>
+                        <d> Toplist</d>
+                    </a>
+                </li>
+                <li>
+                    <a href="map.html"><i class="fa fa-fw fa-edit"></i>
+                        <d>Burger Map</d>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i
+                            class="fa fa-fw fa-arrows-v"></i>
+                        <d>Search</d>
+                        <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo" class="collapse">
+                        <li>
+                            <a href="#">
+                                <d>Place</d>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <d>Burger</d>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <d>User</d>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i>
+                        <d> My History</d>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage.html"><i class="fa fa-fw fa-file"></i>
+                        <d> User management</d>
+                    </a>
+                </li>
+                <!--
+                <li>
+                    <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+                </li>-->
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+
+    <div id="page-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div id='myModal' class='modal'>
+                <center>
+                    <div class='modal-content'>
+                        <span class='close'>&times;</span>
+                        <div class="container">
+                            <div class="row">
+                                <br>
+                                <center>
+                                    <div class="col-md-4 col-md-offset-4" style="margin-left: 0px;">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Add new user</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <form role="form" name="myForm" autocomplete="off">
+                                                    <fieldset>
+                                                        <div class="form-group">
+                                                            <div name="err_userName"></div>
+                                                            <input style="width:80%;" class="form-control"
+                                                                   placeholder="Username" name="userName" type="user"
+                                                                   autofocus>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div name="err_firstName"></div>
+                                                            <input style="width:80%;" class="form-control"
+                                                                   placeholder="First name" name="firstName"
+                                                                   type="name1" autofocus>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div name="err_lastName"></div>
+                                                            <input style="width:80%;" class="form-control"
+                                                                   placeholder="Last name" name="lastName" type="name2"
+                                                                   autofocus>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div name="err_email"></div>
+                                                            <input style="width:80%;" class="form-control"
+                                                                   placeholder="E-mail" name="email" ng-model="text"
+                                                                   type="email">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input style="width:80%;" class="form-control"
+                                                                   placeholder="Password" name="password"
+                                                                   type="password" value="" autocomplete="off">
+                                                        </div>
+                                                        <br>
+                                                        <a onclick="addUser();" style="width: 25%;"
+                                                           class="btn btn-sm btn-info btn-block">Add</a>
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </center>
+                            </div>
+                            </span>
+                        </div>
+                    </div>
+                </center>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table>
+                        <tr>
+                            <td>
+                                <h1 class="page-header">
+                                    <b> Manage Users </b>
+                                </h1>
+                            </td>
+                            <!-- <td>
+                                 <button class="button" valign="bottom" type='edit_btn' name='read' onclick="edit()">Edit</button>
+                             </td>-->
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+            <p>
+
+                <button class="btn btn-default" id='myBtn' style="margin-left: 20px;vertical-align: middle;"
+                        valign="bottom" type='add_btn' name='read'>Add new user
+                </button>
+            </p>
+            <br>
+            <div class="col-lg-10">
+                <div class="table table-striped">
+                    <table id="userTable" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th class="tbl">UserID</th>
+                            <th class="tbl">Username</th>
+                            <th class="tbl">First name</th>
+                            <th class="tbl">Last name</th>
+                            <th class="tbl">E-mail</th>
+                            <th class="tbl">Permission</th>
+                            <th class="tbl"></th>
+                            <!--<th class="tbl" style="display:none;">Delete</th>-->
+                        </tr>
+                        </thead>
+                        <tbody class="jsonUser">
+                        <!--Data here-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+
+            <!-- /.row -->
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<!-- Morris Charts JavaScript -->
+<script>
+    $(document).ready(function () {
+        listUsers();
+        modal();
+        //requestUpdateDropDown2("company");
+
+    });
+</script>
+
+</body>
+
+
+</html>
