@@ -1,16 +1,23 @@
-button.rate, button.send{
-  background: linear-gradient(to bottom, #3a404d, #181c26);
-  border-radius: 10px;
-  box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
-  padding: 15px 45px;
-margin: 0 10px 0 250px;
+img{
+    max-height: 100px; 
+    max-width: 100px; 
+    height: auto; 
+    width: auto;
 }
-button.rate h1, button.send h1{
-  font-size: 26px;
-  color: #e1e1e1;
-  margin: 5px;
-  
 
+img.placeImage{
+    max-height: 400px; 
+    max-width: 400px; 
+    height: auto; 
+    width: auto;
+    border: 10px solid transparent;
+    padding: 15px;
+    border-image: url(border.png) 30 stretch;
+}
+
+.placeDescription{
+    padding: 15px;
+    vertical-align: bottom;
 }
 
 /* button.rate {

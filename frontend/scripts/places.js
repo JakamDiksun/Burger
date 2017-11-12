@@ -12,6 +12,10 @@ function getPlaceDatas(){
                 console.log(element.placeName)
                 $(".placeName").html(element.placeName)
                 $(".placeDescription").html(element.description)
+                if(element.image == null){
+                    element.image = "sample-blue.png";
+                }
+                $(".placeImage").attr("src",element.image)
                 $(".mapLink").attr("href","map.html?Pid="+element.placeID);
             }, this);   
             getBurgers();    
@@ -37,14 +41,20 @@ function getBurgers(){
     var url = "http://"+ip+"/place/datas/"+placeID;
     req.open("GET", url, true);
     req.send();
+    console.log("sun")
     req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
             var json = JSON.parse(req.responseText);
+
+            console.log(json)
             var data = "";
             json.forEach(function (element) {
+                if(element.image == null){
+                    element.image = "sample-blue.png";
+                }
                 data += "<tr>"+
                     "<td class='hidden-sm hidden-xs' style='text-align:right; vertical-align: middle;width: 140px;'>"+
-                        "<div class='biground'></div>"+
+                        "<img src='"+element.image+"'>"+
                     "</td>"+
                     "<td style='padding-bottom:30px;'>"+
                         "<div style='float:right;text-align:right;width:80px;text-align:center;'>"+

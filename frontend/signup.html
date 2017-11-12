@@ -13,7 +13,9 @@
     <link href="css/bootstrapLogin.min.css" rel="stylesheet">
     <link href="css/sb-admin-Login.css" rel="stylesheet">
 
+    <link href="css/fonts.css" rel="stylesheet">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <script src="scripts/avatarselector.js"></script>
     <script src="scripts/signup.js"></script><!--
     <script src="croppic/croppic.js"></script>
     <script src="croppic/croppic.min.js"></script>-->
@@ -21,23 +23,18 @@
     <link rel="stylesheet" href="croppic/croppie.css" />
 <script src="croppic/croppie.js"></script>
     <style>
-            @font-face { font-family: JuneBug; src: url('BROMO.otf'); } 
-        c {
-            font-family: JuneBug
-        }
-         @font-face { font-family: Simple; src: url('Simple.ttf'); } 
-        td,d {
-            font-family: Simple
-        }
     img {
-    max-width: 100%;
-    height: auto;
-}
+        max-width: 90%;
+        height: auto;
+        text-align: center;
+        cursor: pointer;
+    }
 		#yourId {
 			width: 200px;
 			height: 150px;
 			position:relative; /* or fixed or absolute */
-		}
+        }
+
 </style>
 </head>
 
@@ -63,7 +60,7 @@
             <td>
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-4 col-md-offset-3">
+                        <div class="col-md-4 col-md-offset-4">
                             <div class="login-panel panel panel-default">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Please fill in the registration form</h3>
@@ -85,14 +82,31 @@
                                             </div>
                                             <div class="form-group">
                                                 <div name="err_email"></div>
-                                                <input class="form-control" placeholder="E-mail" name="email" ng-model="text" type="email" autofocus>
-                                                <span ng-show="myForm.email.$error.email">Not a valid e-mail address!</span>
+                                                <input class="form-control" placeholder="E-mail" name="email" ng-model="text" type="e-mail" autofocus>
+                                                <!--<span ng-show="myForm.email.$error.email">Not a valid e-mail address!</span>-->
                                             </div>
                                             <div class="form-group">
-                                                <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                                <input class="form-control" placeholder="Password" name="password" type="pasword" value="">
                                             </div>
-                                            <div>      
-                                                <input class="form-control" id="inp" type='file'>
+                                            <div>    
+                                                <div style="padding-bottom: 20px;">Pick your avatar:  
+                                                    </div>      
+                                                <table>
+                                                    <tr>
+                                                            <td><img id="1" src="/avatars/1.png" name="-" onclick="select(this);" class="avatar"></td>
+                                                            <td><img id="2" src="/avatars/2.png" name="-" onclick="select(this);" class="avatar"></td>
+                                                            <td><img id="3" src="/avatars/3.png" name="-" onclick="select(this);" class="avatar"></td>
+                                                            <td><img id="4" src="/avatars/4.png" name="-" onclick="select(this);" class="avatar"></td>
+                                                    </tr>
+                                                    <tr>
+                                                            <td><img id="5" src="/avatars/5.png" name="-" onclick="select(this);" class="avatar"></td>
+                                                            <td><img id="6" src="/avatars/6.png" name="-" onclick="select(this);" class="avatar"></td>
+                                                            <td><img id="7" src="/avatars/7.png" name="-" onclick="select(this);" class="avatar"></td>
+                                                            <td><img id="8" src="/avatars/8.png" name="-" onclick="select(this);" class="avatar"></td>
+                                                    </tr>
+                                                </table>
+                                                <div class="avatar" id="0" display="none;"></div>
+                                                <!--<input class="form-control" id="inp" type='file'>-->
                                                     <br>    
                                             </div>
                                              <div class="demo"></div>
@@ -106,20 +120,6 @@
                     </div>
                 </div>
 
-            </td>
-            <td>
-                
-                
-                            <div name="image" class="login-panel panel panel-default" style="margin-left:-420px;max-width: 300px;">
-                                <div class="panel-body">
-                                    <form role="form" ng-app="" name="myForm">
-                                        
-                                                <img id="img" src="" type="profile">
-                                    </form>
-                                </div>
-                            </div>
-
-                
             </td>
         </tr>
     </tbody>

@@ -11,15 +11,15 @@ function modal(){
     span.attr("onclick","popupShowHide('none')");
     $(window).click(function(event) {
         console.log(event.target.nodeName);
-        if (event.target.nodeName == "DIV") {
+        if (event.target.nodeName == "DIV" || event.target.nodeName == "CENTER") {
             popupShowHide("none");
         }
     });
 }
 function listUsers(){
-    if($("button[type='edit_btn']").attr("name")=="edit"){
-        stopEdit();
-    }
+    $("div[name='user']").show();
+    $("div[name='place']").hide();
+    $("div[name='burger']").hide();
     reqUser = new XMLHttpRequest();
     var ip = location.host;
     var url = "http://"+ip+"/users";
@@ -48,6 +48,7 @@ function listUsers(){
                             "</td><td width='15%' value='"+element.lastName+"'>" + element.lastName +
                             "</td><td width='15%' value='"+element.email+"'>" + element.email + "</td>"+
                             "</td><td width='15%' value='"+permission+"'>" + permission + "</td>"+
+                            "</td><td width='10%' value='"+element.image+"'><img style='width:50px;' src='/avatars/"+element.image+".png'></td>"+
                             "<td width='10%' style='text-align:left' id="+element.userID+" name='modify' >"+
                                 "<button type='edit' class='btn btn-warning' name='read' id = '" + element.userID + "' onclick='editUser(" + element.userID + ")'>"+
                                     "<span color='white' class='glyphicon glyphicon-edit' aria-hidden='true'></span>"+
@@ -81,6 +82,8 @@ function editUser(userID){
     var email = rowTds.eq(4).text();
     var permission = rowTds.eq(5).attr("value");
     var permissionName = rowTds.eq(5).text();
+    var avatar = rowTds.eq(6).find("img").attr("src").replace("/avatars/","").replace(".png","")
+    avatar = avatar != "null" ? avatar : ""; 
     rowTds.eq(1).html("<input class='form-control input-sm' style='box-sizing : border-box;' type='text' name='userName' raw='"+userName+"' value='"+userName+"'>");
     rowTds.eq(2).html("<input class='form-control input-sm' style='box-sizing : border-box;' type='text' name='firstName' raw='"+firstName+"' value='"+firstName+"'>");
     rowTds.eq(3).html("<input class='form-control input-sm' style='box-sizing : border-box;' type='text' name='lastName' raw='"+lastName+"' value='"+lastName+"'>");
@@ -91,6 +94,7 @@ function editUser(userID){
     }
     permissionList += "<option value='1'>User</option><option value='2'>Administrator</option><option value='3'>Manager</option>";
     rowTds.eq(5).html(permissionList);
+    rowTds.eq(6).html("<input class='form-control input-sm' style='box-sizing : border-box;' type='text' name='avatar' raw='"+avatar+"' value='"+avatar+"'>");
     $("select[name='permission'][id="+userID+"]").find("option:contains("+permission+")").attr('selected', true);
     $("td[name='update'][id="+userID+"]").show()
     $("td[name='delete'][id="+userID+"]").show()
@@ -108,11 +112,13 @@ function stopEditUser(userID){
         var lastName = rowTds.eq(3).find("input").attr("raw");
         var email = rowTds.eq(4).find("input").attr("raw");
         var permission = rowTds.eq(5).find("select").attr("raw");
+        var avatar = rowTds.eq(6).find("input").attr("raw");
         rowTds.eq(1).html(userName);
         rowTds.eq(2).html(firstName);
         rowTds.eq(3).html(lastName)
         rowTds.eq(4).html(email);
         rowTds.eq(5).html(permission);
+        rowTds.eq(6).html("<img style='width:50px;' src='/avatars/"+avatar+".png'>");
         $("select[name='permission'][id="+userID+"]").find("option[value="+permission+"]").attr('selected', true);
     $("td[name='update'][id="+userID+"]").hide()
     $("td[name='delete'][id="+userID+"]").hide()
@@ -132,12 +138,14 @@ function updateView(userID){
         var lastName = rowTds.eq(3).find("input").val();
         var email = rowTds.eq(4).find("input").val();
         var permission = rowTds.eq(5).find(":selected").text();
+        var image = rowTds.eq(6).find("input").val();
         rowTds.eq(1).html(userName);
         rowTds.eq(2).html(firstName);
         rowTds.eq(3).html(lastName)
         rowTds.eq(4).html(email);
         rowTds.eq(5).html(permission);
         $("select[name='permission'][id="+userID+"]").find("option[value="+permission+"]").attr('selected', true);
+        rowTds.eq(6).html("<img style='width:50px;' src='/avatars/"+image+".png'>");
     $("td[name='update'][id="+userID+"]").hide()
     $("td[name='delete'][id="+userID+"]").hide()
     $("td[name='response'][id="+userID+"]").hide()
@@ -158,6 +166,7 @@ function addUser(){
     var userName = $("input[type='user']").val();
     var email = $("input[type='email']").val();
     var password =  $("input[type='password']").val();
+    var image = $("div.avatar").attr("id");
     //var companyID = $("select[name='company_list']").find(":selected").val();
     userName = userName == "" ? null: userName;
     email = email == "" ? null: email;
@@ -201,7 +210,7 @@ function addUser(){
             "lastName": lastName,
             "email": email,
             "password": password,
-            "image": null
+            "image": image
         }
     );
     req.send(userData);
@@ -218,11 +227,13 @@ function update(userID){
         var lastName = $("tr[id="+userID+"][class='tbl']").find("td").eq(3).find("input").val()
         var email = $("tr[id="+userID+"][class='tbl']").find("td").eq(4).find("input").val()
         var permission = $("tr[id="+userID+"][class='tbl']").find("td").eq(5).find(":selected").val()
+        var image = $("tr[id="+userID+"][class='tbl']").find("td").eq(6).find("input").val()
         userName = userName == "" ? null: userName;
         firstName = firstName == "" ? null: firstName;
         lastName = lastName == "" ? null: lastName;
         email = email == "" ? null: email;
         permission = permission == "" ? null: permission;
+        image = image == "" ? null: image;
         req.onreadystatechange = function () {
             if (req.readyState == 4 && req.status == 200) {
                     //document.querySelector("div[name='err_userName']").innerHTML = "";
@@ -260,7 +271,8 @@ function update(userID){
                 "lastName": lastName,
                 "userName": userName,
                 "email": email,
-                "permission": permission
+                "permission": permission,
+                "image": image
             }
         );
         req.send(userData);

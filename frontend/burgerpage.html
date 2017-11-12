@@ -10,124 +10,21 @@
     <meta name="author" content="">
 
     <title>BurgeRate</title>
-
-    <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
     <link href="css/ratingstars.css" rel="stylesheet">
-    <link href="css/buttons.css" rel="stylesheet">
     <link href="css/fonts.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
-<style type="text/css">
-
-.inline { 
-    margin:10px;
-    float:left;/*Add float left*/
-    margin :10px;
-}
-#tv {
-  width: 100%;
-  height: 80px;
-  position: relative;
-  background: linear-gradient(to bottom, #6496c8, #3b5b7a);
-  color: white;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-align: center;
-  border-radius: 10px;
-                 /* background: linear-gradient(to bottom, #3a404d, #181c26);*/
-  border-radius: 10px;
-  box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
-  text-transform: uppercase;
-}
-#tv:after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 0;
-  border-bottom: 20px solid dotted;
-  border-left: 110px solid transparent;
-  border-right: 110px solid transparent;
-}
-    .big-circle {
-        background-color: #036;
-        width: 100px;
-        height: 100px;
-        border-radius: 130px;
-        z-index: 5;
-        text-align: center;
-    }
-    .small-circle {
-        display: inline-block;
-        background-color: #bc6939;
-        background: linear-gradient(to top,  #9e5024,#e28c5a);
-        width: 80px;
-        height: 60px;
-        border-radius: 70px;
-        z-index: 5;
-        text-align: center;
-    }
-    .score-container {
-        font-size: 27px;
-        font-weight: bold;
-        color: #fff;
-        padding: 7px 10px;
-    }
-    .score-container-total {
-        font-size: 42px;
-        font-weight: bold;
-        color: #fff;
-        padding: 7px 10px;
-    }
-    .overall {
-        font-size: 10px;
-        font-weight: normal;
-        line-height: 1.5;
-    }
-    .ratingValue {
-        line-height: 1.3;
-    }
-   
-    textarea[type="text"] {
-        border: solid 5px #c9c9c9;
-        transition: border 0.3s;
-        width: 70%;
-        min-height: 100px;
-    }
-    textarea[type="text"]:focus,
-    textarea[type="text"].focus {
-     border: solid 5px #969696;
-    }
-
-
-/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
-   follow these rules. Every browser that supports :checked also supports :not(), so
-   it doesn’t make the test unnecessarily selective */
-
-
-</style>
 
 <script src="js/jquery.js"></script>
 <script src="scripts/headerdatas.js"></script>
 <script src="scripts/burgers.js"></script>
 <script>
-    console.log("ok")
     getBurgerDatas();
+
 </script>
 
 <body >
@@ -149,88 +46,8 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu message-dropdown">
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="signup.html" class="dropdown-toggle"><i class="fa fa-user"></i> Sign -up/-in</a>
-
+                        <a href="/logout" method="get" onclick="doLogOut();"><i class="glyphicon glyphicon-log-in"></i> Log-out
+                        </a>
                 </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
@@ -245,7 +62,7 @@
                     <li>
                         <a href="map.html"><i class="fa fa-fw fa-edit"></i> Burger Map</a>
                     </li>
-                    <li>
+                    <!--<li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Search <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
@@ -258,9 +75,9 @@
                                 <a href="#">User</a>
                             </li>
                         </ul>
-                    </li>
+                    </li>-->
                     <li>
-                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> My History</a>
+                        <a href="myhistory.html"><i class="fa fa-fw fa-desktop"></i> My History</a>
                     </li>
                     <!--
                     <li>
@@ -270,8 +87,55 @@
             </div>
             <!-- /.navbar-collapse -->
         </nav>
-        <div id="page-wrapper"  style="background: radial-gradient(ellipse farthest-corner at center top, #fff482 0%, #bc853c 100%);">
+        <div id="page-wrapper">
             <div class="container-fluid">
+                    <div id='confirm' class='modal'>
+                            <center>
+                                <div class='modal-content'>
+                                    <span class='close'>&times;</span>
+                                    <div class="container">
+                                        <div class="row">
+                                            <center>
+                                                <div class="col-md-4 col-md-offset-4" style="margin-left: 0px;">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <h3 class="panel-title">Are you sure you want to delete your rating?</h3>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <form role="form" name="myForm" autocomplete="off">
+                                                                <fieldset>
+                                                                    
+                                                                    <br>
+                                                                    <table>
+                                                                        <tr>
+                                                                                <td style="text-align:left; padding:50px;">
+                                                                                        <a id="yes" onclick="deleteRating();" 
+                                                                                           class="btn btn-lg btn-danger btn-block">Yes</a>
+            
+            
+                                                                                </td>
+                                                                                <td  style="text-align:right; padding:50px;">
+                                                                                        <a onclick=""
+                                                                                           class="btn btn-lg btn-info btn-block">No</a>
+            
+            
+                                                                                </td>
+
+                                                                        </tr>
+                                                                    </table>
+                                                                    
+                                                                </fieldset>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </center>
+                                        </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </center>
+                        </div>
                 <br>
                 <div id="container" class="full-size">
                     <!-- site map -->
@@ -290,9 +154,9 @@
                         <div class="image-column col-sm-2"><center style = "width: 200px;">
                             </br>
                             <div style="padding-right: 10px">
-                                <a href="https://res.cloudinary.com/ratebeer/image/upload/w_250,c_limit/beer_44896.jpg">
-                                    <img itemprop="image" class="curvy" id="beerImg" border="0" src="http://inspectiondoc.com/wp-content/uploads/2014/08/sample-icon.png" style="max-height: 300px; max-width: 110px; height: auto; width: auto;" alt="" onerror="this.onerror=null;this.src='/images/icons/icon-beer.png';">
-                                </a>
+                                
+                                    <img itemprop="image" border="2" class="burgerImg" id="burgerImg" border="0" src=""  alt="img" >
+                                
                             </div>
                             <br>
                             <br>
@@ -339,13 +203,12 @@
                                             </td>
                                             <td>
                                                 <section class="press">
-                                                    <button class="rate" onclick="showRateField();"><h1>Rate</h1></button>
+                                                    <button class="rate" onclick=""><h1></h1></button>
                                                 </section>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                
                             <div class="stats-container"><small><a name="number" title="Number of total ratings">RATINGS: <big style="color: #777;"><strong><span class="numberOfRatings">-</span></strong></big></a></small>
                             </div>
                             <br>
@@ -528,7 +391,7 @@
                                         <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;">Cask at The Roebuck, Leek (Titanic) A clear deep golden colour with a medium white head. Aroma of caramel, some fruit, slight biscuit and subtle earthy hops. Taste is similar of caramel, maybe butterscotch, some biscuit, slight fruit and subtle earthy hops. Light bodied and soft carbonation. A soft, earthy hop bitterness in the finish. Not a lot to say about this beer, boring but drinkable. </div>
                                         <br>-->
                             </div>
-
+                            
                             <!-- end of .tag-container -->
 
                             <br>
@@ -539,7 +402,6 @@
 
                             <div id="taphunter-include" style="padding: 10px 14px; font-size: 12px; line-height: 1.5;"></div>
 
-                            <script src="https://www.taphunter.com/ratebeer/beer/44896.js"></script>
 
                         </div>
 

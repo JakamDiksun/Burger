@@ -21,8 +21,8 @@ var mysql      = require('mysql');
 var pool = mysql.createPool({
     connectionLimit: 10,
     host     : 'localhost',
-    user     : 'webuser',
-    password : 'webpass',
+    user     : 'root',
+    password : 'root',
     database : 'hamburgerdb',
     multipleStatements: true
 });
@@ -217,7 +217,7 @@ app.post('/getquery',function(req,res){
 try {
     app.get('/users', function(req, res) {
         pool.getConnection(function(err, connection) {
-            connection.query("SELECT userID, firstName, lastName, userName, email, permission FROM users;", function(err, rows, fields) {
+            connection.query("SELECT userID, firstName, lastName, userName, email, permission, image FROM users ORDER BY userID desc; ", function(err, rows, fields) {
                 connection.release(); //release the connection
                 if (!err) {
                     writelog("debug", "GET/user");
@@ -348,8 +348,9 @@ try {
         var lastName = req.body.lastName;
         var email = req.body.email;
         var permission = req.body.permission;
+        var image = req.body.image;
         pool.getConnection(function(err, connection) {
-            connection.query("UPDATE Users SET userName=?, firstName=?, lastName=?, email=?, permission=? WHERE userID = ?;", [userName, firstName, lastName, email, permission, userID], function(err, rows, fields) {
+            connection.query("UPDATE Users SET userName=?, firstName=?, lastName=?, email=?, permission=?, image=? WHERE userID = ?;", [userName, firstName, lastName, email, permission, image, userID], function(err, rows, fields) {
                 connection.release(); //release the connection
                 if (!err) {
                     writelog("debug", "PUT/users/update " + userID);
@@ -394,7 +395,7 @@ try {
 try {
     app.get('/places', function(req, res) {
         pool.getConnection(function(err, connection) {
-            connection.query("SELECT * FROM places;", function(err, rows, fields) {
+            connection.query("SELECT * FROM places ORDER BY placeID desc;", function(err, rows, fields) {
                 connection.release(); //release the connection
                 if (!err) {
                     writelog("debug", "GET/places");
@@ -415,7 +416,7 @@ try {
         res.setHeader("Access-Control-Allow-Origin", "*");
         var placeID = req.params.placeID;
         pool.getConnection(function(err, connection) {
-            connection.query("SELECT burgers.burgerID, burgers.burgerName, Burgers.placeID from Burgers, Ratings, Places Where Burgers.placeID = ? group by burgers.burgerID;",[placeID], function(err, rows, fields) {
+            connection.query("SELECT burgers.burgerID, burgers.burgerName, Burgers.placeID, burgers.image, burgers.visible from Burgers, Ratings, Places Where Burgers.placeID = ? group by burgers.burgerID;",[placeID], function(err, rows, fields) {
                 connection.release(); //release the connection
                 if (!err) {
                     writelog("debug", "GET/places");
@@ -435,7 +436,7 @@ try {
     app.get('/place/ratings/:placeID', function(req, res) {
         res.setHeader("Access-Control-Allow-Origin", "*");
         var placeID = req.params.placeID;
-        var query = "Select burgers.burgerID, burgers.burgerName, "+
+        var query = "Select burgers.burgerID, burgers.burgerName, burgers.visible, "+
                         "avg(Ratings.pTaste) as pTaste, "+
                         "avg(Ratings.pPrepareTime) as pPrepareTime, "+
                         "avg(Ratings.pApperance) as pApperance, "+
@@ -504,13 +505,139 @@ try {
     console.log("Error accessing GET/placeID/:placeID endpoint!" + err);
 }
 
+try {
+    app.post('/places/post', function(req, res) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        var body = req.body;
+        var placeName = body.placeName;
+        var phoneNumber = body.phoneNumber;
+        var description = body.description;
+        var image = body.image;
+        var gpsX = body.gpsX;
+        var gpsY = body.gpsY;
+        var query = "INSERT INTO Places (placeName,phoneNumber,description,image,gpsX,gpsY) VALUES (?,?,?,?,?,?);";
+        pool.getConnection(function(err, connection) {
+            connection.query(query, [placeName,phoneNumber,description,image,gpsX,gpsY], function(err, rows, fields) {
+                connection.release();
+                if (!err) {
+                    writelog("debug", "POST/places");
+                    res.send("OK");
+                } else if (err.code == "ER_DUP_ENTRY") {
+                    writelog("error", "Error at endpoint POST/places. place name is already taken." + err);
+                    res.send(err.message);
+                } else if (!placeName || !description) {
+                    writelog("error", "Error at endpoint POST/places. place or description field is empty." + err);
+                    res.send('Empty');
+                } else {
+                    writelog("error", "Error at endpoint POST/places " + err);
+                    res.send('Error');
+                }
+            });
+        });
+    });
+} catch (err) {
+    console.log("Error accessing POST/places endpoint! " + err);
+}
+try {
+    app.put('/places/update', function(req, res) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        var placeID = req.body.placeID;
+        var placeName = req.body.placeName;
+        var phoneNumber = req.body.phoneNumber;
+        var description = req.body.description;
+        var image = req.body.image;
+        var gpsX = req.body.gpsX;
+        var gpsY = req.body.gpsY;
+        
+        pool.getConnection(function(err, connection) {
+            connection.query("UPDATE places SET placeName=?, phoneNumber=?, description=?, image=?, gpsX=?, gpsY=? WHERE placeID = ?;", [placeName, phoneNumber, description, image, gpsX, gpsY, placeID], function(err, rows, fields) {
+                connection.release(); //release the connection
+                if (!err) {
+                    writelog("debug", "PUT/places/update " + placeID);
+                    res.send("OK");
+                } else if (err.code == "ER_DUP_ENTRY") {
+                        writelog("error", "Error at endpoint PUT/places/update " + err);
+                        res.send(err.message);
+                } else if (!placeName ||!description) {
+                    writelog("error", "Error at endpoint PUT/places/update. Place name or description field is empty." + err);
+                    res.send('Empty');
+                }else {
+                writelog("error", "Error at endpoint PUT/places/update " + err);
+                res.send('Error');
+                }
+            });
+        });
+    });
+} catch (err) {
+    console.log("Error accessing PUT/places/update endpoint! " + err);
+}
+try {
+    app.delete('/places/:placeID', function(req, res) {
+        var placeID = req.params.placeID;
+        pool.getConnection(function(err, connection) {
+            connection.query("DELETE FROM places WHERE placeID = ?;", [placeID], function(err, rows, fields) {
+                connection.release(); 
+                if (!err) {
+                    writelog("debug", "DELETE/places/" + placeID);
+                    res.send("OK");
+                } else {
+                    writelog("error", "Error at endpoint DELETE/places/" + placeID + " Error: " + err);
+                    res.send('Error');
+                }
+            });
+        });
+    });
+} catch (err) {
+    console.log("Error accessing DELETE/places/:placeID endpoint! " + err);
+}
+try {
+    app.put('/places/invisible', function(req, res) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        var placeID = req.body.placeID;
+        pool.getConnection(function(err, connection) {
+            connection.query("UPDATE places SET visible=0 WHERE placeID = ?;", [placeID], function(err, rows, fields) {
+                connection.release(); //release the connection
+                if (!err) {
+                    writelog("debug", "PUT/places/invisible " + placeID);
+                    res.send("OK");
+                }else {
+                writelog("error", "Error at endpoint PUT/places/invisible " + err);
+                res.send('Error');
+                }
+            });
+        });
+    });
+} catch (err) {
+    console.log("Error accessing PUT/places/invisible endpoint! " + err);
+}
+try {
+    app.put('/places/visible', function(req, res) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        var placeID = req.body.placeID;
+        pool.getConnection(function(err, connection) {
+            connection.query("UPDATE places SET visible=1 WHERE placeID = ?;", [placeID], function(err, rows, fields) {
+                connection.release(); //release the connection
+                if (!err) {
+                    writelog("debug", "PUT/places/visible " + placeID);
+                    res.send("OK");
+                }else {
+                writelog("error", "Error at endpoint PUT/places/visible " + err);
+                res.send('Error');
+                }
+            });
+        });
+    });
+} catch (err) {
+    console.log("Error accessing PUT/places/visible endpoint! " + err);
+}
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 try {
     app.get('/burgers', function(req, res) {
         pool.getConnection(function(err, connection) {
-            connection.query("SELECT burgers.burgerID, burgers.burgerName, places.placeName, places.placeID, burgers.description FROM burgers, places WHERE burgers.placeID = places.placeID;", function(err, rows, fields) {
+            connection.query("SELECT burgers.burgerID, burgers.burgerName, places.placeName, places.placeID, burgers.description, burgers.image, burgers.visible "+
+                            "FROM burgers, places WHERE burgers.placeID = places.placeID ORDER BY burgers.burgerID desc;", function(err, rows, fields) {
                 connection.release(); //release the connection
                 if (!err) {
                     writelog("debug", "GET/burgers");
@@ -531,7 +658,7 @@ try {
         res.setHeader("Access-Control-Allow-Origin", "*");
         var burgerID = req.params.burgerID;
         pool.getConnection(function(err, connection) {
-            connection.query("SELECT burgers.burgerID, burgers.burgerName, burgers.placeID, burgers.description, "+
+            connection.query("SELECT burgers.burgerID, burgers.burgerName, burgers.placeID, burgers.description, burgers.image, burgers.visible, "+
                             "places.placeName, "+
                             "avg(ratings.pTaste) AS pTaste, avg(ratings.pPrepareTime) AS pPrepareTime, avg(ratings.pApperance) AS pApperance, avg(ratings.pTotal) AS pTotal, "+
                             "count(ratings.pTotal) AS count "+
@@ -574,13 +701,132 @@ try {
 } catch (err) {
     console.log("Error accessing GET/burgerID/:burgersID endpoint!" + err);
 }
-
+try {
+    app.post('/burgers/post', function(req, res) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        var body = req.body;
+        var burgerName = body.burgerName;
+        var placeID = body.placeID;
+        var description = body.description;
+        var image = body.image;
+        var query = "INSERT INTO Burgers (burgerName,placeID,description,image) VALUES (?,?,?,?);";
+        pool.getConnection(function(err, connection) {
+            connection.query(query, [burgerName,placeID,description,image], function(err, rows, fields) {
+                connection.release();
+                if (!err) {
+                    writelog("debug", "POST/burgers");
+                    res.send("OK");
+                } else if (err.code == "ER_DUP_ENTRY") {
+                    writelog("error", "Error at endpoint POST/burgers. Burger name is already taken." + err);
+                    res.send(err.message);
+                } else if (!burgerName || !description || !placeID) {
+                    writelog("error", "Error at endpoint POST/burgers. Burger, place or description field is empty." + err);
+                    res.send('Empty');
+                } else {
+                    writelog("error", "Error at endpoint POST/burgers " + err);
+                    res.send('Error');
+                }
+            });
+        });
+    });
+} catch (err) {
+    console.log("Error accessing POST/burgers endpoint! " + err);
+}
+try {
+    app.put('/burgers/update', function(req, res) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        var burgerID = req.body.burgerID;
+        var burgerName = req.body.burgerName;
+        var placeID = req.body.placeID;
+        var description = req.body.description;
+        var image = req.body.image;
+        pool.getConnection(function(err, connection) {
+            connection.query("UPDATE Burgers SET burgerName=?, placeID=?, description=?, image=? WHERE burgerID = ?;", [burgerName, placeID, description, image, burgerID], function(err, rows, fields) {
+                connection.release(); //release the connection
+                if (!err) {
+                    writelog("debug", "PUT/burgers/update " + burgerID);
+                    res.send("OK");
+                } else if (err.code == "ER_DUP_ENTRY") {
+                        writelog("error", "Error at endpoint PUT/burgers/update " + err);
+                        res.send(err.message);
+                } else if (!burgerName || !placeID ||!description) {
+                    writelog("error", "Error at endpoint PUT/burgers/update. Username or e-mail field is empty." + err);
+                    res.send('Empty');
+                }else {
+                writelog("error", "Error at endpoint PUT/burgers/update " + err);
+                res.send('Error');
+                }
+            });
+        });
+    });
+} catch (err) {
+    console.log("Error accessing PUT/burgers/update endpoint! " + err);
+}
+try {
+    app.delete('/burgers/:burgerID', function(req, res) {
+        var burgerID = req.params.burgerID;
+        pool.getConnection(function(err, connection) {
+            connection.query("DELETE FROM burgers WHERE burgerID = ?;", [burgerID], function(err, rows, fields) {
+                connection.release(); 
+                if (!err) {
+                    writelog("debug", "DELETE/burgers/" + burgerID);
+                    res.send("OK");
+                } else {
+                    writelog("error", "Error at endpoint DELETE/burgers/" + burgerID + " Error: " + err);
+                    res.send('Error');
+                }
+            });
+        });
+    });
+} catch (err) {
+    console.log("Error accessing DELETE/burgers/:burgerID endpoint! " + err);
+}
+try {
+    app.put('/burgers/invisible', function(req, res) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        var burgerID = req.body.burgerID;
+        pool.getConnection(function(err, connection) {
+            connection.query("UPDATE Burgers SET visible=0 WHERE burgerID = ?;", [burgerID], function(err, rows, fields) {
+                connection.release(); //release the connection
+                if (!err) {
+                    writelog("debug", "PUT/burgers/invisible " + burgerID);
+                    res.send("OK");
+                }else {
+                writelog("error", "Error at endpoint PUT/burgers/invisible " + err);
+                res.send('Error');
+                }
+            });
+        });
+    });
+} catch (err) {
+    console.log("Error accessing PUT/burgers/invisible endpoint! " + err);
+}
+try {
+    app.put('/burgers/visible', function(req, res) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        var burgerID = req.body.burgerID;
+        pool.getConnection(function(err, connection) {
+            connection.query("UPDATE Burgers SET visible=1 WHERE burgerID = ?;", [burgerID], function(err, rows, fields) {
+                connection.release(); //release the connection
+                if (!err) {
+                    writelog("debug", "PUT/burgers/visible " + burgerID);
+                    res.send("OK");
+                }else {
+                writelog("error", "Error at endpoint PUT/burgers/visible " + err);
+                res.send('Error');
+                }
+            });
+        });
+    });
+} catch (err) {
+    console.log("Error accessing PUT/burgers/visible endpoint! " + err);
+}
 try {
     app.get('/ratings/:burgerID', function(req, res) {
         res.setHeader("Access-Control-Allow-Origin", "*");
         var burgerID = req.params.burgerID;
         pool.getConnection(function(err, connection) {
-            connection.query("SELECT Ratings.ratingID, users.userName, Ratings.pTaste, Ratings.pPrepareTime, Ratings.pApperance, Ratings.pTotal, Ratings.comment, Ratings.likes, Ratings.date "+
+            connection.query("SELECT Ratings.ratingID, users.userName, users.userID, users.image, Ratings.pTaste, Ratings.pPrepareTime, Ratings.pApperance, Ratings.pTotal, Ratings.comment, Ratings.likes, Ratings.date "+
                             "FROM Ratings,users WHERE burgerID = ? AND Ratings.userID = users.userID", [burgerID], function(err, rows, fields) {
                 connection.release(); //release the connection
                 if (!err) {
@@ -596,7 +842,27 @@ try {
 } catch (err) {
     console.log("Error accessing GET/ratings/:burgersID endpoint!" + err);
 }
-
+try {
+    app.get('/ratings/:burgerID/:userID', function(req, res) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        var userID = req.params.userID;
+        var burgerID = req.params.burgerID;
+        pool.getConnection(function(err, connection) {
+            connection.query("SELECT ratingID FROM Ratings WHERE burgerID = ? AND userID = ?;", [burgerID,userID], function(err, rows, fields) {
+                connection.release(); //release the connection
+                if (!err) {
+                    writelog("debug", "GET/ratings/" + burgerID + "/" + userID);
+                    res.send(rows);
+                } else {
+                    res.send('Error');
+                }
+            });
+            // connection.release(); //release the connection
+        });
+    });
+} catch (err) {
+    console.log("Error accessing GET/ratings/:burgerID/:userID endpoint!" + err);
+}
 try {
     app.post('/rate',function(req,res){
         res.setHeader("Access-Control-Allow-Origin", "*"); 
@@ -624,6 +890,25 @@ try {
     });
 } catch (err) {
     console.log("Error accessing POST/rate/ endpoint!" + err);
+}
+try {
+    app.delete('/ratings/:ratingID', function(req, res) {
+        var ratingID = req.params.ratingID;
+        pool.getConnection(function(err, connection) {
+            connection.query("DELETE FROM Likes WHERE ratingID = ?; DELETE FROM Ratings WHERE ratingID = ?;", [ratingID, ratingID], function(err, rows, fields) {
+                connection.release(); 
+                if (!err) {
+                    writelog("debug", "DELETE/ratingID/" + ratingID);
+                    res.send("OK");
+                } else {
+                    writelog("error", "Error at endpoint DELETE/ratingID/" + ratingID + " Error: " + err);
+                    res.send('Error');
+                }
+            });
+        });
+    });
+} catch (err) {
+    console.log("Error accessing DELETE/ratingID/:ratingID endpoint! " + err);
 }
 try {
     app.post('/like',function(req,res){
@@ -692,7 +977,7 @@ try {
                 viewvpoint = "pTotal";
                 break;
         }
-        var query = "Select burgers.burgerID, burgers.burgerName, "+
+        var query = "Select burgers.burgerID, burgers.burgerName, burgers.visible, "+
                         " avg(Ratings.pTaste) as pTaste,"+ 
                         " avg(Ratings.pPrepareTime) as pPrepareTime, "+
                         " avg(Ratings.pApperance) as pApperance, "+

@@ -1,3 +1,85 @@
+
+.inline { 
+    margin:10px;
+    float:left;/*Add float left*/
+    margin :10px;
+}
+#tv {
+  width: 100%;
+  height: 80px;
+  position: relative;
+  background: linear-gradient(to bottom, #6496c8, #3b5b7a);
+  color: white;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-align: center;
+  border-radius: 10px;
+                 /* background: linear-gradient(to bottom, #3a404d, #181c26);*/
+  border-radius: 10px;
+  box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
+  text-transform: uppercase;
+}
+#tv:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 20px solid dotted;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+}
+    .big-circle {
+        background-color: #036;
+        width: 100px;
+        height: 100px;
+        border-radius: 130px;
+        z-index: 5;
+        text-align: center;
+    }
+    .small-circle {
+        display: inline-block;
+        background-color: #bc6939;
+        background: linear-gradient(to top,  #9e5024,#e28c5a);
+        width: 80px;
+        height: 60px;
+        border-radius: 70px;
+        z-index: 5;
+        text-align: center;
+    }
+    .score-container {
+        font-size: 27px;
+        font-weight: bold;
+        color: #fff;
+        padding: 7px 10px;
+    }
+    .score-container-total {
+        font-size: 42px;
+        font-weight: bold;
+        color: #fff;
+        padding: 7px 10px;
+    }
+    .overall {
+        font-size: 10px;
+        font-weight: normal;
+        line-height: 1.5;
+    }
+    .ratingValue {
+        line-height: 1.3;
+    }
+   
+    textarea[type="text"] {
+        border: solid 5px #c9c9c9;
+        transition: border 0.3s;
+        width: 70%;
+        min-height: 100px;
+    }
+    textarea[type="text"]:focus,
+    textarea[type="text"].focus {
+     border: solid 5px #969696;
+    }
+
 .rating:not(:checked) > input {
     position:absolute;
     /*top:-9999px;*/
@@ -50,3 +132,65 @@
 .rating {
     float:left;
 }
+button.rate, button.send{
+    background: linear-gradient(to bottom, #3a404d, #181c26);
+    border-radius: 10px;
+    box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
+    padding: 15px 45px;
+  margin: 0 10px 0 250px;
+  }
+  button.rate h1, button.send h1{
+    font-size: 26px;
+    color: #e1e1e1;
+    margin: 5px;
+  }
+.burgerImg{
+    max-height: 450px; 
+    max-width: 250px; 
+    height: auto; 
+    width: auto;
+    border: 10px solid transparent;
+    padding: 15px;
+    -webkit-border-image: url(border.png) 30 stretch; /* Safari 3.1-5 */
+    -o-border-image: url(border.png) 30 stretch; /* Opera 11-12.1 */
+    border-image: url(border.png) 30 stretch;
+    
+}
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0); /* Black w/ opacity */
+        justify-content: center;
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        justify-content: center;
+        border: 1px solid #888;
+        width: 23%;
+        vertical-align: middle;
+    }
+
+    .close {
+        color: black;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    a{
+        cursor: pointer;
+    }

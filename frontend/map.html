@@ -18,7 +18,7 @@
     <link href="css/sb-admin.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="css/plugins/morris.css" rel="stylesheet">
+    <link href="css/fonts.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -81,8 +81,8 @@
             </div>
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="signup.html" class="dropdown-toggle"><i class="fa fa-user"></i> Sign -up/-in</a>
-
+                        <a href="/logout" method="get" onclick="doLogOut();"><i class="glyphicon glyphicon-log-in"></i> Log-out
+                        </a>
                 </li>
             </ul>
             <div class="collapse navbar-collapse navbar-ex1-collapse" style='height:71px !important;'>
@@ -96,7 +96,7 @@
                     <li class="active">
                         <a href="map.html"><i class="fa fa-fw fa-edit"></i> <d>Burger Map</d></a>
                     </li>
-                    <li>
+                    <!--<li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> <d>Search</d> <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
@@ -109,12 +109,9 @@
                                 <a href="#"><d>User</a></d>
                             </li>
                         </ul>
-                    </li>
+                    </li>-->
                     <li>
-                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i><d> My History</d></a>
-                    </li>
-                    <li>
-                        <a href="manage.html"><i class="fa fa-fw fa-file"></i><d> User management</d></a>
+                        <a href="myhistory.html"><i class="fa fa-fw fa-desktop"></i><d> My History</d></a>
                     </li>
                 </ul>
             </div>

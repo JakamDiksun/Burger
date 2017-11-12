@@ -14,6 +14,7 @@ function getTopList(type){
             var count = 1;
             var viewPoint ="";  
             json.forEach(function (element) {
+                if(element.visible!=0){
                 switch (type) {
                     case 1:
                         viewPoint = element.pTaste.toString()
@@ -32,6 +33,7 @@ function getTopList(type){
                 $("small[id='"+count+"']").text(viewPoint.substring(0,4));
                 $("mark[id='"+count+"']").parent().attr("onclick", "location.href='burgerpage.html?Bid="+element.burgerID+"'");
                 count++;
+            }
             }, this);   
             
         }

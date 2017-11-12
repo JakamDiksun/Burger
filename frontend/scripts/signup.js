@@ -1,6 +1,6 @@
 
 $( document ).ready(function() {
-function readFile() {
+/*function readFile() {
   
   if (this.files && this.files[0]) {
     
@@ -20,7 +20,9 @@ function readFile() {
 document.getElementById("inp").addEventListener("change", readFile);
 if(document.getElementById("img").src==""){
     $("div[name='image']").hide();
-}
+}*/
+$("input[name='email']").val("");
+$("input[name='password']").val("");
 });
 
 
@@ -37,9 +39,11 @@ if(document.getElementById("img").src==""){
             var firstName = $("input[type='name1']").val();
             var lastName = $("input[type='name2']").val();
             var userName = $("input[type='user']").val();
-            var email = $("input[type='email']").val();
-            var password =  $("input[type='password']").val();
-            var image = $("img[type='profile']").attr("src").replace("data:image/jpeg;base64,","");
+            var email = $("input[name='email']").val();
+            var password =  $("input[name='password']").val();
+            //var image = $("img[type='profile']").attr("src").replace("data:image/jpeg;base64,","");
+            var image = $("div.avatar").attr("id");
+            
             firstName = firstName == "" ? null: firstName;
             lastName = lastName == "" ? null: lastName;
             userName = userName == "" ? null: userName;
