@@ -149,7 +149,7 @@ function getRatings() {
                     "src='/avatars/"+element.image+".png'>" +
                     "</div>" +
                     "<div style='display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;'>" + element.pTotal.toString().substring(0, 4) + "</div>" +
-                    "</div><small style='color: #666666; font-size: 12px; font-weight: bold;'><a id='count' class='userName' href='#'>" + element.userName + "</a></small></td>" +
+                    "</div><small style='color: #666666; font-size: 12px; font-weight: bold;'><a id='count' class='userName' href='/myhistory.html?user="+element.userID+"'>" + element.userName + "</a></small></td>" +
                     "<td width='60%' valign='bottom' align='right'><small style='color:grey'>" +
                     element.date.split(".")[0].replace("T", "  :  ") +
                     "</small></td>" +

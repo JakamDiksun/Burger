@@ -1,3 +1,13 @@
+var userIDList = [];
+
+function stopEditAllUsers(){
+    ////console.log(burgerIDList)
+    userIDList.forEach(function(element) {
+        if($("button[type='edit'][id='"+element+"']").attr("name") == "edit")
+        stopEditUser(element);
+    });
+}
+
 function popupShowHide(action){
     $("div[id='myModal']").css("display",action);
     $("input[type='email']").val("");
@@ -30,8 +40,11 @@ function listUsers(){
         if (reqUser.readyState == 4 && reqUser.status == 200) {
             var json = JSON.parse(reqUser.responseText);
             var userDatas = "";
+            var count = 0;
             json.forEach(function (element) {
                 var permission = "";
+                userIDList[count] = element.userID;
+                count++;
                 switch (element.permission) {
                     case 0:  permission = "Deleted"; break;
                     case 1:  permission = "User"; break;
@@ -70,6 +83,7 @@ function listUsers(){
 }
 
 function editUser(userID){
+    stopEditAllUsers();
     $("button[type='edit'][id="+userID+"]").attr("onclick", "stopEditUser("+userID+")");
     $("button[type='edit'][id="+userID+"]").attr("name", "edit");
     $("button[type='update'][id="+userID+"]").show();
@@ -283,7 +297,7 @@ function deleteUser(userID){
         var ip = location.host;
         var url = "http://"+ip+"/users/"+userID;
         req.open("DELETE", url, true);
-        req.send();
+        req.send(); 
         req.onreadystatechange = function () {
             if (req.readyState == 4 && req.status == 200) {
                 console.log(req.responseText)

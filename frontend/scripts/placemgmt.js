@@ -8,7 +8,7 @@ function stopEditAllPlaces(){
 }
 
 
-function readFileNew() {
+function readFileNewP() {
     
     if (this.files && this.files[0]) {
       var FR= new FileReader();
@@ -20,8 +20,8 @@ function readFileNew() {
     
   }
 function popupShowHidePlace(action){
-    readFileNew();
-    document.getElementById("inpNewP").addEventListener("change", readFileNew);
+    readFileNewP();
+    document.getElementById("inpNewP").addEventListener("change", readFileNewP);
     //getPlaceNamesNewBurger();
     $("div[id='myModalPlace']").css("display",action);
     $("input[type='placeName']").val("");
@@ -29,7 +29,7 @@ function popupShowHidePlace(action){
     $("input[name='GPS-X']").val("");
     $("input[name='GPS-Y']").val("");
     $("textarea[type='description']").val("");
-    $("input[type='file']").attr("src","");
+    $("input[type='file']").eq(1).attr("src","");
 }
 function modalPlace(){
     var modal = $("div[id='myModalPlace']");

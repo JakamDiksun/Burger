@@ -10,13 +10,20 @@
       <script src="js/jquery.js"></script>
       <link href="css/bootstrap.min.css" rel="stylesheet">
       <link href="css/sb-admin.css" rel="stylesheet">
-      <link href="css/toplist.css" rel="stylesheet">
       <link href="css/fonts.css" rel="stylesheet">
+      <link href="css/ratingstars.css" rel="stylesheet">
       <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
       <script src="scripts/headerdatas.js"></script>
       <script src="scripts/user.js"></script>
+      <script src="scripts/avatarselector.js"></script>
+      <script src="scripts/signup.js"></script>
       <script>
-         getUserdatas(globalID)
+         var userID = getUrlVars()["user"];
+         if(userID){
+             getUserdatas(userID);
+         }else{
+            getUserdatas(globalID)
+         }
       </script>
       <style>
       .jsonUser{
@@ -28,15 +35,23 @@
         padding-left: 25px;
       }
       .details{
-          padding: 50px 20px;
+          padding-top: 20px;
+          padding-left: 20px;
       }
       td{
           color: black;
       }
+      img {
+        max-width: 90%;
+        height: auto;
+        text-align: center;
+        cursor: pointer;
+    }
       </style>
    </head>
    <body>
       <div id="wrapper">
+          <div id="page-wrapper">
       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
          <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -57,7 +72,7 @@
                <a href="/logout" method="get" onclick="doLogOut();"><i class="glyphicon glyphicon-log-in"></i> Log-out </a>
             </li>
          </ul>
-         <div class="collapse navbar-collapse navbar-ex1-collapse" style='height:71px !important;'>
+         <div class="collapse navbar-collapse navbar-ex1-collapse" style='height:75px !important;'>
             <ul class="nav navbar-nav side-nav">
                <li>
                   <a href="burgerlist.html">
@@ -65,7 +80,7 @@
                      <d>Burgers</d>
                   </a>
                </li>
-               <li class="active">
+               <li>
                   <a href="toplist.html">
                      <i class="fa fa-fw fa-bar-chart-o"></i>
                      <d> Toplist</d>
@@ -77,7 +92,7 @@
                      <d>Burger Map</d>
                   </a>
                </li>
-               <li>
+               <li class="active">
                   <a href="myhistory.html">
                      <i class="fa fa-fw fa-desktop"></i>
                      <d> My History</d>
@@ -88,13 +103,18 @@
       </nav>
       <div class="container-fluid">
          <div class="row">
+                
                 <br><br>
                 <br><br>
                 <br><br>
+                <div name="err_userName" align="center"></div>
             <div class="jsonUser">
             </div>
+            <br><br>
+            <div class="reviews-container" style="width:80%;padding-left:200px;"></div>
             <script src="js/bootstrap.min.js"></script>
          </div>
+        </div>
       </div>
    </body>
 </html>

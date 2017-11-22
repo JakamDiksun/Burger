@@ -1,7 +1,7 @@
 var burgerIDList = [];
 
 function stopEditAllBurgers(){
-    console.log(burgerIDList)
+    ////console.log(burgerIDList)
     burgerIDList.forEach(function(element) {
         if($("button[type='edit'][id='"+element+"']").attr("name") == "edit")
         stopEditBurger(element);
@@ -15,7 +15,7 @@ function popupShowHideBurger(action){
     $("div[id='myModalBurger']").css("display",action);
     $("input[type='burgerName']").val("");
     $("textarea[type='description']").val("");
-    $("input[type='file']").attr("src","");
+    $("input[type='file']").eq(0).attr("src","");
 }
 function modalBurger(){
     var modal = $("div[id='myModalBurger']");
@@ -24,7 +24,7 @@ function modalBurger(){
     btn.attr("onclick","popupShowHideBurger('block')");       
     span.attr("onclick","popupShowHideBurger('none')");
     $(window).click(function(event) {
-        console.log(event.target.nodeName);
+        //console.log(event.target.nodeName);
         if (event.target.nodeName == "DIV") {
             popupShowHideBurger("none");
         }
@@ -95,7 +95,7 @@ function addBurger(){
     var burgerName = $("input[type='burgerName']").val();
     var placeID = $("select[type='placeName']").val();
     var description = $("textarea[type='description']").val();
-    var image = $("input[type='file']").attr("src");
+    var image = $("input[type='file']").eq(0).attr("src");
     burgerName = burgerName == "" ? null: burgerName;
     placeID = placeID == "" ? null: placeID;
     description = description == "" ? null: description;
@@ -114,19 +114,19 @@ function addBurger(){
                         var errArray = req.responseText.split("'");
                         var duplField = errArray[errArray.length-2];
                         var messageNode = "<h5 class='err'><font color='red'>The "+duplField.toLowerCase()+" is already taken!</font></h5>";
-                        console.log(messageNode);
+                        //console.log(messageNode);
                         document.querySelector("div[name='err_burgerName']").innerHTML = messageNode;
                     }else if(req.responseText=="Empty"){
                         var messageNode = "<h5 class='err'><font color='red'>Please fill all the fields!</font></h5>";
-                        console.log(messageNode);
+                        //console.log(messageNode);
                         document.querySelector("div[name='err_burgerName']").innerHTML = messageNode;
                     }else{
-                        console.log(req.responseText);
+                        //console.log(req.responseText);
                         var errArray = req.responseText.split("'");
                         var duplField = errArray[errArray.length-2];
-                        console.log(errArray);
+                        //console.log(errArray);
                         var messageNode = "<h5 class='err'><font color='red'>The "+duplField.toLowerCase()+" is already taken!</font></h5>";
-                        console.log(messageNode);
+                        //console.log(messageNode);
                         document.querySelector("div[name='err_"+duplField+"']").innerHTML = messageNode;
                 }
         }
@@ -210,13 +210,13 @@ function updateBurger(burgerID){
     
     req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
-                console.log(req.responseText)
+                //console.log(req.responseText)
                     if(req.responseText=="OK"){
                         updateViewBurger(burgerID);
                         $("tr[class='tbl-brg'][id="+burgerID+"]").attr("bgcolor","#f7fff4")
                     }else if(req.responseText=="Empty"){
                         var messageNode = "<h5 style='width: 200px;' class='err'><font color='red'>Please fill all the fields!</font></h5>";
-                        console.log(messageNode);
+                        //console.log(messageNode);
                         alert("Please fill all the fields!");
                     }else{
                         var errArray = req.responseText.split("'");
@@ -275,7 +275,7 @@ function getPlaceNames(burgerID){
                 options += "<option value='"+element.placeID+"'>"+element.placeName+"</option>";
                 i++;
             });
-            //console.log(places)
+            ////console.log(places)
             $("tr[class='tbl-brg'][id='"+burgerID+"']").find("select").html(options);
             $("tr[class='tbl-brg'][id='"+burgerID+"']").find("select").val($("tr[class='tbl-brg'][id='"+burgerID+"']").find("select").attr("value"))
         }
@@ -291,11 +291,11 @@ function getPlaceNamesNewBurger(){
     reqUser.setRequestHeader("Content-Type", window.location.pathname)
     reqUser.send();
     var places =  [];
-    console.log("start")
+    //console.log("start")
     reqUser.onreadystatechange = function () {
-        console.log(reqUser.readyState+" ")
+        //console.log(reqUser.readyState+" ")
         if (reqUser.readyState == 4 && reqUser.status == 200) {
-            console.log("osssk")
+            //console.log("osssk")
             var json = JSON.parse(reqUser.responseText);
             var i = 0;
             var options = "";
@@ -319,11 +319,11 @@ function deleteBurger(burgerID){
     req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
             if(req.responseText=="OK"){
-                console.log("SUCCESS");
+                //console.log("SUCCESS");
                 stopEditBurger(burgerID);
                 $("tr[class='tbl-brg'][id="+burgerID+"]").attr("bgcolor","#ffd3d3")
             }else if(req.responseText=="Error"){
-                console.log("Hiba");
+                //console.log("Hiba");
                 makeBurgerInvisible(burgerID);
                 $("tr[class='tbl-brg'][id="+burgerID+"]").attr("bgcolor","#ffd3d3")
                 
@@ -340,7 +340,7 @@ function makeBurgerInvisible(burgerID){
     req.setRequestHeader("Content-type", "application/json");    
     req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
-            console.log(req.responseText)
+            //console.log(req.responseText)
             stopEditBurger(burgerID);
             $("button[name='delete'][id="+burgerID+"]").attr("onclick","resetBurger("+burgerID+")")
             $("button[name='delete'][id="+burgerID+"]").find("span").attr("class","glyphicon glyphicon-refresh")
@@ -363,7 +363,7 @@ function resetBurger(burgerID){
     req.setRequestHeader("Content-type", "application/json");    
     req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
-            console.log(req.responseText)
+            //console.log(req.responseText)
             stopEditBurger(burgerID);
             $("tr[class='tbl-brg'][id="+burgerID+"]").attr("bgcolor","")
             $("button[name='delete'][id="+burgerID+"]").attr("onclick","deleteBurger("+burgerID+")")
@@ -379,6 +379,20 @@ function resetBurger(burgerID){
     req.send(data);
 }
 
+
+function readFileNew() {
+    
+    if (this.files && this.files[0]) {
+      var FR= new FileReader();
+      FR.addEventListener("load", function(e) {
+          //console.log("sun:"+e.target.result)
+        document.getElementById("inpNew").src = e.target.result;
+    });   
+    FR.readAsDataURL( this.files[0] );
+    }
+    
+  }
+
 function readFile() {
     
     if (this.files && this.files[0]) {
@@ -389,16 +403,4 @@ function readFile() {
     FR.readAsDataURL( this.files[0] );
     }
     
-  }
-
-  function readFileNew() {
-    
-    if (this.files && this.files[0]) {
-      var FR= new FileReader();
-      FR.addEventListener("load", function(e) {
-        document.getElementById("inpNew").src = e.target.result;
-    });   
-    FR.readAsDataURL( this.files[0] );
-    }
-    
-  }
+ }

@@ -48,7 +48,7 @@ function filter(id) {
                 placeID.push(element.placeID);
                 comment.push(element.description);
 
-                images.push("<img alt='test.jpg' height='80' width='110' style='transform: rotate(90deg);' onclick='largeImage(" + element.image + ");' src='data:image/jpeg;base64, " + element.image + "' />");
+                images.push("<img class='place' alt='test.jpg' src='" + element.image + "'>");
                 var tmp = {
                     lat: element.gpsX,
                     lng: element.gpsY
@@ -96,14 +96,14 @@ function initMap() {
     markers.forEach(function(element) {
         var contentString = '<div id="content">' +
             '<div>' +
-            "<table style='max-width:200px;max-height:220px;overflow: scroll;'>" +
+            "<table style='width:100px;height:100px;'>" +
             "<tr><td rowspan='6'>" +
             images[i] +
             "</td></tr>" +
-            "<tr><td>Place name: </br><a  href='placepage.html?Pid="+placeID[i]+"'><b>" + placeName[i] + "</b></a></td></tr>" +
-            "<tr><td></td></tr>" +
+            "<tr><td>Place name: </br></br><a  href='placepage.html?Pid="+placeID[i]+"'><b style='font-size:20px;'>" + placeName[i] + "</b></a></td></tr>" +
+            "<tr><td><hr></td><td><hr></td></tr>" +
            //"<tr><td>Date: </br><b>" + date[i].split('T')[0] + "</b></td></tr>" +
-            "<tr><td colspan='2'><hr>Comment: " + comment[i] + "</td></tr>" +
+            "<tr><td colspan='2'><div  style='height:180px;width:200px;overflow-y: scroll;padding:0 15px;'>Comment: <br>" + comment[i] + "</div></td></tr>" +
             "</table>" +
             '</div>';
         i++;

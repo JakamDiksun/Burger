@@ -20,3 +20,12 @@ function checkPermissions(){
         $("ul[class='nav navbar-nav side-nav']").append("<li><a href='manage.html'><i class='fa fa-fw fa-file'></i> Manage datas</a></li>");
     }
 };
+
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+        vars[key] = value;
+    });
+    return vars;
+}
