@@ -70,30 +70,18 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-    //writelog("debug","Passport deserialized: Belép."); //1
     try {
-       // writelog("debug","Passport deserialized TRY in."); //2
         pool.getConnection(function(err, connection) {
-            //writelog("debug","Passport deserialized POOL in."); //3
             connection.query("select * from users where userID = ?;",[id], function(err, rows) {
-                //writelog("debug","Passport deserialized QUERY in."); //4
                 connection.release(); 
                 if(err || !id){
                     writelog("error", "Error at deserializing user: " + err);
-                    //log.error("Error at deserializing user: " + err);
                     done(err, null);
                 }else{
-                    //writelog("debug", "Deserializing user with ID: "+id+" succesful!"); //5
-                    //log.debug( "Deserializing user with ID: "+id+" succesful!");
                     done(null, rows[0]);
                 }
-                writelog("debug","Passport deserialized QUERY end."); //6
             });
-            
-            //writelog("debug","Passport deserialized POOL end."); //7
-
         });
-            //writelog("debug","Passport deserialized TRY end."); //8
     } catch (err) {
         writelog("error", "Error at deserializing user: " + err);
         log.error("Error at deserializing user: " + err);

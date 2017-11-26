@@ -15,6 +15,7 @@ function getPlaceDatas(){
                 if(element.image == null){
                     element.image = "sample-blue.png";
                 }
+                $(".placeNumber").html("PHONE NUMBER: "+element.phoneNumber);
                 $(".placeImage").attr("src",element.image)
                 $(".mapLink").attr("href","map.html?Pid="+element.placeID);
             }, this);   

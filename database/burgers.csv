@@ -1,0 +1,40 @@
+1;Bacon Cheese burger;1;120g-os szezámmagos hamburgerzsemle, 180g-os 100%-os marhahúspogácsa, cheddar sajt, pirított bacon, jégsaláta, paradicsomkarika, finomra vágott hagyma, édes uborka, házi BBQ-s, majonézes mártás (allergének: glutén, tejtermék, szezámmag)                    ;NULL;1
+2;Camembert Deluxe burger;1;120g-os szezámmagos hamburgerzsemle, rántott camembert sajt, jégsaláta, paradicsomkarika, rántott hagymakarika, mézes áfonyaöntettel (allergének: glutén, tejtermék, tojás, szezámmag) ;NULL;1
+3;Center Pork burger;1;120g-os szezámmagos hamburgerzsemle, 180g-os sertéshúspogácsa, füstölt sajt, pirított bacon, jégsaláta, paradicsom, édes uborka, házi BBQ-s, majonézes mártás (allergének: glutén, tejtermék, szezámmag) ;NULL;1
+4;Csupa Cheese burger;1;120g-os szezámmagos hamburgerzsemle, grillezett gomolya sajt, rántott trappista sajt, cheddar sajt, jégsaláta, paradicsom, édes uborka, pirított hagyma, házi BBQ-s, majonézes mártás (allergének: glutén, tejtermék, szezámmag, tojás) ;NULL;1
+5;Gold burger;1;120g-os szezámmagos hamburgerzsemle, 140g-os aranybarnára sütött, ropogós csirkemell, cheddar sajt, jégsaláta, paradicsomkarika, édes uborka, házi BBQ-s, majonézes mártás (allergének: glutén, tojás, tejtermék, szezámmag) ;NULL;1
+6;BBQ Burger;2;házi készítésû, szezámmagos hamburgerzsemle, 180 g-os marhahúspogácsa, Deep szósz, bacon, coleslaw, BBQ szósz, paradicsom, saláta, sajtkorona, csemegeuborka ;NULL;1
+7;Deep Classic hamburger;2;házi készítésû, szezámmagos hamburgerzsemle, 180 g-os marhahúspogácsa, Deep szósz, paradicsom, saláta, sajtkorona, chilis majonéz, házi mustár ;NULL;1
+8;Jucy Lucy Burger;2;házi készítésû, szezámmagos hamburgerzsemle, 250 g-os cheddar sajttal töltött marhahúspogácsa, saláta, chilis majonéz, jalapeno paprika, csemegeuborka, házi mustár;NULL;1
+9;Kecskesajtos Burger (vega);2;házi készítésû, szezámmagos hamburgerzsemle, 120 g-os termelõi, natúr kecskesajt, rukkola, paradicsom, ranch öntet ;NULL;1
+10;BLT. szendvics;3;házi buci (15dkg), saláta, paradicsom, bacon, sous vide sült csirke, házi majonéz (allergének: glutén) ;NULL;1
+11;Csirkeburger;3;sous vide csirke ropogós bundában, sajt, paradicsom, saláta, csemegeuborka, házi majonéz, házi buci (15dkg) (allergének: glutén, tejtermék, olajos magvak) ;NULL;1
+12;Pulled pork szendvics;3;házi buci (15dkg), pulled pork, coleslaw saláta, saláta, házi BBQ szósz (allergének: glutén, tejtermék) ;NULL;1
+13;Vega burger;3;saláta, grill zöldségek, grill gomolya sajt, paradicsom, pirított hagyma, fokhagyma, házi majonéz, házi buci (15dkg) (allergének: glutén, tejtermék, olajos magvak) ;NULL;1
+14;Acapulco Heat Burger;4;13 dkg marhahús, ementáli sajt, bacon, jalapeno paprika, avokádókrém, csípõs házi chiliszósz, római saláta, szezámos buci (allergének: glutén, tojás, tejtermék, szezámmag)                    ;NULL;1
+15;B.L.T. Burger;4;13 dkg hús, sok ropogósra sült bacon, jégsaláta, paradicsom, majonézzel, szezámos buciban (allergének: glutén, tojás, szezámmag) ;NULL;1
+16;Jedi burger;5;kézmûves, adalékmentes buci, marhahús, Yoda szósz, sajt, grillezett ananász, bacon, ropogósra sütött hagyma, jégsaláta, paradicsom, sült burgonyával, street mártás (majonéz alapú fûszeres mártás) ;NULL;1
+17;Vader burger (csípõs);5;kézmûves, adalékmentes buci, fekete borskéregben sült marhahús, Yoda szósz, sajt, ropogósra sült hagyma, jégsaláta, paradicsom, sült burgonyával, street mártás (majonéz alapú fûszeres mártás) ;NULL;1
+18;Kacsaburger;6;kacsahús, málnás lila káposzta, dijoni mustár, jégsaláta, paradicsom, lila hagyma, cheddar sajt, paradicsomszósz, sült burgonya, street mártás (majonéz alapú fûszeres mártás) ;NULL;1
+19;Fall guy hamburger;7;hamburgerbuci, füstölt halloumi sajt, karamellizált hagyma, sült kaliforniai paprika, római saláta, aszalt paradicsomos majonéz (allergének: glutén, tejtermék, tojás, szezámmag) ;NULL;1
+20;Schnitzelburger;8;100% csirkemellfilé frissen panírozva, burgonyás zsemlében, hamburger szósszal, paradicsommal jégsaláta ágyon ;NULL;1
+21;Barbecue burger;8;ízletes csirkehúspogácsa, szezámos zsemlében, majonézzel, barbecue szósszal, pirított hagymával, cheddar sajttal, paradicsommal, hagymával, jégsaláta ágyon ;NULL;1
+22;Grillezett csirkeburger;8;100 % csirkemellfilé grill-lapon átsütve, burgonyás zsemlében, hamburger szósszal, cheddar sajttal, paradicsommal, hagymával jégsaláta ágyon ;NULL;1
+23;Wienerwald original burger;8;Ízletes csirkehúspogácsa, szezámos zsemlében, eredeti Wienerwald hamburgerszósszal, cheddar sajttal, paradicsommal, hagymával jégsaláta ágyon ;NULL;1
+24;Masculin burger hasábburgonyával;9;marhahús, saláta, paradicsom, uborka, lila hagyma, grillezett sajt, bacon, tükörtojás, ketchup ;NULL;1
+25;Texas burger hasábburgonyával;9;marhahús, saláta, paradicsom, uborka, lila hagyma, ajvár, bacon, feta sajt ;NULL;1
+26;Harlem burger hasábburgonyával;9;marhahús, grillezett sajt, saláta, paradicsom, uborka, lila hagyma, barbecue szósz, ketchup ;NULL;1
+27;Royal Pepper burger baconnel;10;kézmûves buci, 200 g-os 100% prémium darált borjúhús, ropogós bacon, rukkola, pirított hagyma, csemegeuborka, borsos-mustáros szósz ;NULL;1
+28;Pepper burger sajttal;10;kézmûves buci, 200 g-os 100% prémium darált borjúhús, ropogós bacon, cheddar sajt, rukkola, pirított hagyma, csemegeuborka, borsos-mustáros szósz ;NULL;1
+29;Big Shot burger baconnel;11;kézmûves buci, 270 g-os 100% prémium darált borjúhús médiumra sütve, cheddar sajt, ropogós bacon, jégsaláta, pirított hagyma, paradicsom, kígyóuborka, Fresh and Grill szósz, salsa szósz ;NULL;1
+30;Creol burger;12;kézmûves buci, 130 g-os 100% prémium darált borjúhús, cheddar sajt, rukkola, grillezett ananász, jalapeno szósz, fresh and grill szósz ;NULL;1
+31;Miss Pepper burger;12;kézmûves buci, 130 g-os 100% prémium darált borjúhús, rukkola, pirított hagyma, csemegeuborka, borsos-mustáros szósz ;NULL;1
+32;Churchill burger;6;kézmûves és adalékmentes buci, marhahús, bacon, jégsaláta, paradicsom, angol szósz, cheddar sajt, lila hagyma, sült burgonya, street mártás (majonéz alapú fûszeres mártás) ;NULL;1
+33;Bárányburger;6;kézmûves és adalékmentes buci, bárányhús, paradicsom, lila hagymalekvár, rukkola, mentás joghurt, sült burgonya, street mártás (majonéz alapú fûszeres mártás) ;NULL;1
+34;Fat duck hamburger;7;vajjal pirított szezámmagos hamburgerbuci, kacsamell, grillezett kacsamáj, rántott hagymakarika, római saláta, áfonyás BBQ szósz (allergének: glutén, tejtermék, tojás, szezámmag, szója, dió) ;NULL;1
+35;Fösvénység hamburger;7;hamburgerbuci, 100% marhahús, pastrami, konfitált fokhagyma, mézes mustár (allergének: glutén, mustár, szezámmag) ;NULL;1
+36;Restség hamburger;7;hamburgerbuci, füstölt sajt, mustáros tejföl, bacon, karamellizált hagyma (Kérjük, válasszon hozzá húst!) ;NULL;1
+37;Stex Burger;8;ízletes marhahúspogácsa, szezámos zsemlében, majonézzel, barbecue szósszal, pirított hagymával, cheddar sajttal, paradicsommal, hagymával, jégsaláta ágyon ;NULL;1
+38;Hurt Locker Burger;4;13 dkg hús, ketchup, fehér hagyma, cheddar sajt, bacon, dijoni mustáros tarkaborsmártás, szezámos buciban (allergének: glutén, tojás, tejtermék, mustár, szezámmag) ;NULL;1
+39;Kentucky classic burger;4;13 dkg hús, rántott hagymakarikák, bacon, coleslaw káposztasaláta, majonéz, szezámos buciban (allergének: glutén, tojás, tejtermék, szezámmag) ;NULL;1
+40;Shrooms Burger;4;13 dkg marhahús, füstölt sajt, sautée gomba, pármai sonka, mustár, fûszeres tejföl (allergének: glutén, tojás, tejtermék, mustár, szezámmag) ;NULL;1

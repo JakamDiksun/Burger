@@ -139,7 +139,7 @@ function getRatings() {
             json.forEach(function (element) {
                 var deleteRating = "";
                 if (element.userID == globalID || globalPerm > 1){
-                    deleteRating = "<td style='text-align:right;'><button style='cursor:pointer;' onclick=\"popupShowHide('block',"+element.ratingID+");\" class='btn btn-danger btn-lg'>"+
+                    deleteRating = "<td style='text-align:right;padding-left: 15px;'><button style='cursor:pointer;' onclick=\"popupShowHide('block',"+element.ratingID+");\" class='btn btn-danger btn-lg'>"+
                     "<span class='glyphicon glyphicon-trash'></span>"+ 
                   "</button></td>";
                 }
@@ -149,15 +149,14 @@ function getRatings() {
                     "src='/avatars/"+element.image+".png'>" +
                     "</div>" +
                     "<div style='display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;'>" + element.pTotal.toString().substring(0, 4) + "</div>" +
-                    "</div><small style='color: #666666; font-size: 12px; font-weight: bold;'><a id='count' class='userName' href='/myhistory.html?user="+element.userID+"'>" + element.userName + "</a></small></td>" +
+                    "</div><small style='color: #666666; font-size: 12px; font-weight: bold;'><a id='count' class='userName' href='/profile.html?user="+element.userID+"'>" + element.userName + "</a></small></td>" +
                     "<td width='60%' valign='bottom' align='right'><small style='color:grey'>" +
                     element.date.split(".")[0].replace("T", "  :  ") +
                     "</small></td>" +
                     "<td style='float:right;'>" +
                     "<b class='likes'>" + element.likes + "</b><h1><i href='#' onclick='sendLike(this," + element.ratingID + ")' value='off' class='fa fa-thumbs-o-up'style='cursor: pointer;' ></i></h1></td>"+
                     deleteRating +"</tr></table>" +
-                    "<br>" +
-                    "<small>TASTE: <b>" + element.pTaste + "&emsp;</b>PREPARE TIME: <b>" + element.pPrepareTime + "&emsp;</b> APPEARANCE: <b>" + element.pApperance + "</b></small>" +
+                    "<small style='color:grey'>TASTE: <b>" + element.pTaste + "&emsp;</b>PREPARE TIME: <b>" + element.pPrepareTime + "&emsp;</b> APPEARANCE: <b>" + element.pApperance + "</b></small>" +
                     "<div style='padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;'>" + element.comment + "</div>" +
                     "<br>";
             }, this);

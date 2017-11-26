@@ -27,12 +27,12 @@ function getUserdatas(userID){
                 }else{
                     $(".active").attr("class","");
                 }
-                userDatas = `<table id="datas" style="width:40%;">
+                userDatas = `<table id="datas" style="width:55%;">
                 <tr>
-                    <td id="avatar">
+                    <td id="avatar" value="`+element.image+`">
                         <img  width = "100px;" src="avatars/`+element.image+`.png" alt="">
                     </td>
-                    <td class="username" id="username" >
+                    <td class="username" id="username" value="`+element.userName+`" >
                         `+element.userName+`'s profile
                     </td>
                     `+edit+`
@@ -42,7 +42,7 @@ function getUserdatas(userID){
                         <div class="name">Full name: </div>
                     </td>
                     <td class="details">
-                        <b id="name" style="font-size:20px;">`+element.firstName+` `+element.lastName+`</b>
+                        <b id="name" style="font-size:20px;" fname="`+element.firstName+`" lname="`+element.lastName+`">`+element.firstName+` `+element.lastName+`</b>
                     </td>
                 </tr>
                 <tr>
@@ -50,7 +50,7 @@ function getUserdatas(userID){
                         <div class="email">Email: </div>
                     </td>
                     <td class="details">
-                        <b id="email" style="font-size:20px;">`+element.email+`</b>
+                        <b id="email" style="font-size:20px;" value="`+element.email+`">`+element.email+`</b>
                     </td>
                 </tr>
                 <tr id='password' style="display:none;">
@@ -129,6 +129,7 @@ function getRatingsUser(userID){
 function editProfile(){
     var table = $("#datas")
     var avatar = $("#avatar");
+    var avatarID = avatar.attr("value");
     var username = $("#username");
     var name = $("#name");
     var email = $("#email");
@@ -143,7 +144,7 @@ function editProfile(){
     avatar.html(`<div>    
     <div style="padding-bottom: 20px;">Pick your avatar:  
         </div>      
-    <table>
+    <table id="avatarPicker">
         <tr>
                 <td><img id="1" src="/avatars/1.png" name="-" onclick="select(this);" class="avatar"></td>
                 <td><img id="2" src="/avatars/2.png" name="-" onclick="select(this);" class="avatar"></td>
@@ -161,11 +162,12 @@ function editProfile(){
     <!--<input class="form-control" id="inp" type='file'>-->
         <br>    
 </div>`);
-    username.html("<input placeholder='username' style='width:50%'> 's profile")
+    username.html("<input placeholder='username' style='width:50%' value = '"+username.attr("value")+"'> 's profile")
     username.attr("style","width:50%");
     table.attr("style","width:75%");
-    name.html("<input id='fname' placeholder='First name' style='width:25%'><input id='lname' placeholder='Last name' style='width:25%'>")
-    email.html("<input placeholder='email' style='width:50%'>")
+    name.html("<input id='fname' placeholder='First name' style='width:25%' value='"+name.attr("fname")+"'><input id='lname' placeholder='Last name' style='width:25%' value='"+name.attr("lname")+"'>")
+    email.html("<input placeholder='email' style='width:50%'  value='"+email.attr("value")+"'>")
+    $("#avatarPicker img#"+avatarID+"").trigger("click")
     password.show();
 }
 

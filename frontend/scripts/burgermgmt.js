@@ -33,10 +33,9 @@ function modalBurger(){
 
 
 function listBurgers(){
-    
-    $("div[name='user']").hide();
-    $("div[name='place']").hide();
-    $("div[name='burger']").show();
+        $("div[name='user']").hide();
+        $("div[name='place']").hide();
+        $("div[name='burger']").show();
     reqUser = new XMLHttpRequest();
     var ip = location.host;
     var url = "http://"+ip+"/burgers";

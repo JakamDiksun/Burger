@@ -93,11 +93,11 @@ module.exports = function(passport){
     res.sendFile(__dirname + '/frontend/manage.html'); 
   });
 
-  router.get('/myhistory.html', isAuthenticated, function(req, res){
+  router.get('/profile.html', isAuthenticated, function(req, res){
     var userDataString = req.user.userID+"|"+req.user.permission;
     delete req.headers['user'];
     res.setHeader("user",userDataString);
-    res.sendFile(__dirname + '/frontend/myhistory.html'); 
+    res.sendFile(__dirname + '/frontend/profile.html'); 
   });
 
 

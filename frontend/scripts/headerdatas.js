@@ -17,7 +17,7 @@ $(document).ready(function () {
 function checkPermissions(){
     if (globalPerm > 1){
         console.log("admin is logged in")
-        $("ul[class='nav navbar-nav side-nav']").append("<li><a href='manage.html'><i class='fa fa-fw fa-file'></i> Manage datas</a></li>");
+        $("ul[class='nav navbar-nav side-nav']").append("<li><a href='manage.html'><i class='fa fa-fw fa-file'></i> Manage data</a></li>");
     }
 };
 

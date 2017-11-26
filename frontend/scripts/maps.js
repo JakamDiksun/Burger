@@ -13,11 +13,11 @@ var placeID =[];
 
 
     filter()
-    filter()
+
  
 
 
-function filter(id) {
+function filter() {
     var req = new XMLHttpRequest();
     var ip = location.host;
     var id = getUrlVars().Pid != null ? "/"+ getUrlVars().Pid : ""; 
@@ -43,6 +43,7 @@ function filter(id) {
             date = [];
             registryID = [];
             var json = JSON.parse(req.responseText);
+            var x,y;
             json.forEach(function(element) {
                 placeName.push(element.placeName);
                 placeID.push(element.placeID);
@@ -53,10 +54,16 @@ function filter(id) {
                     lat: element.gpsX,
                     lng: element.gpsY
                 };
-                console.log(element.gpsX+", "+element.gpsY)
+                //console.log(element.gpsX+", "+element.gpsY)
+                x = element.gpsX;
+                y = element.gpsY;
                 locations.push(tmp);
             }, this);
-            initMap();
+            if(getUrlVars().Pid){
+                initMapOne(x,y);
+            }else{
+                initMap();
+            }
         }
     }
 }
@@ -103,6 +110,48 @@ function initMap() {
             "<tr><td>Place name: </br></br><a  href='placepage.html?Pid="+placeID[i]+"'><b style='font-size:20px;'>" + placeName[i] + "</b></a></td></tr>" +
             "<tr><td><hr></td><td><hr></td></tr>" +
            //"<tr><td>Date: </br><b>" + date[i].split('T')[0] + "</b></td></tr>" +
+            "<tr><td colspan='2'><div  style='height:180px;width:200px;overflow-y: scroll;padding:0 15px;'>Comment: <br>" + comment[i] + "</div></td></tr>" +
+            "</table>" +
+            '</div>';
+        i++;
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString,
+
+        });
+        element.addListener('click', function() {
+            infowindow.open(map, element);
+        });
+    }, this);
+
+}
+function initMapOne(x,y) {
+    var map = new google.maps.Map(document.getElementById('sample'), {
+        zoom: 13,
+        center: {
+            lat: x,
+            lng:  y
+        }
+    });
+    var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var markers = locations.map(function(location, i, images) {
+        return new google.maps.Marker({
+            position: location,
+        });
+    });
+    var markerCluster = new MarkerClusterer(map, markers, {
+        maxZoom: 12,
+        imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+    });
+    var i = 0;
+    markers.forEach(function(element) {
+        var contentString = '<div id="content">' +
+            '<div>' +
+            "<table style='width:100px;height:100px;'>" +
+            "<tr><td rowspan='6'>" +
+            images[i] +
+            "</td></tr>" +
+            "<tr><td>Place name: </br></br><a  href='placepage.html?Pid="+placeID[i]+"'><b style='font-size:20px;'>" + placeName[i] + "</b></a></td></tr>" +
+            "<tr><td><hr></td><td><hr></td></tr>" +
             "<tr><td colspan='2'><div  style='height:180px;width:200px;overflow-y: scroll;padding:0 15px;'>Comment: <br>" + comment[i] + "</div></td></tr>" +
             "</table>" +
             '</div>';

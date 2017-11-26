@@ -54,7 +54,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="burgerlist.html"><i class="fa fa-fw fa-dashboard"></i> Index</a>
+                        <a href="burgerlist.html"><i class="fa fa-fw fa-dashboard"></i> Burgers</a>
                     </li>
                     <li>
                         <a href="toplist.html"><i class="fa fa-fw fa-bar-chart-o"></i> Toplist</a>
@@ -77,7 +77,7 @@
                         </ul>
                     </li>-->
                     <li>
-                        <a href="myhistory.html"><i class="fa fa-fw fa-desktop"></i> My History</a>
+                        <a href="profile.html"><i class="fa fa-fw fa-desktop"></i> My profile</a>
                     </li>
                     <!--
                     <li>
@@ -150,260 +150,182 @@
                             </span>
                     </div>
                     <div class="row columns-container">
-                    
-                        <div class="image-column col-sm-2"><center style = "width: 200px;">
-                            </br>
-                            <div style="padding-right: 10px">
-                                
-                                    <img itemyprop="image" border="2" class="burgerImg" id="burgerImg" border="0" src=""  alt="img" >
-                                
-                            </div>
-                            <br>
-                            <br>
-                            <small>The picture is <br>illustration</small>
-                            <br></center>
-                        </div>
-                        <div class="col-sm-7" style="padding-left: 55px;">
-                            <div class="aggregate-rating-container">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div id="_aggregateRating6" class="inline"valign="top" align="left">
-                                                    <div  id="tv">
-                                                        <div class="score-container-total">
-                                                            <div class="overall">Total</div>
-                                                            <div class="pTotal">-</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="small-circle">
-                                                        <div class="score-container">
-                                                            <div class="overall">Taste</div>
-                                                            <div class="pTaste">-</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="small-circle">
-                                                        <div class="score-container">
-                                                            <div class="overall">Prep. time</div>
-                                                            <div class="pPrepareTime">-</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="small-circle">
-                                                        <div class="score-container">
-                                                            <div class="overall">Apperance</div>
-                                                            <div class="pApperance">-</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-10">
-                                                    </br>
-                                                    <div style="padding-bottom: 7px; line-height: 1.5;"><big>Made by <b><a href="placepage.html"><span class="placeName">PlaceName</span></a></b></big>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <section class="press">
-                                                    <button class="rate" onclick=""><h1></h1></button>
-                                                </section>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            <div class="stats-container"><small><a name="number" title="Number of total ratings">RATINGS: <big style="color: #777;"><strong><span class="numberOfRatings">-</span></strong></big></a></small>
-                            </div>
-                            <br>
-                            <span class="description">-</span>
-                            <br>
-                         
-
-
-                            <div class="sorting-container">
-                                <span><a href="/toplist.html">Top Burgers</a></span>
-
-                                <span> - </span>
-                                <span><a href="#">Compare</a></span>
-                                <!-- Add Beer Ticks Here ' JT sp_Ticks @Mode = G1 @BeerID -->
-                            </div>
-                            <br>
-
-                            <div class="response-success" style="background-color:#c1f2d1; border: 1px solid #9fc4aa; border-radius: 4px; display: none;" >  
-                                <button type="button" class="close" data-dismiss="modal" style="padding: 20px;" onclick="hideResponse();">&times;</button>
-                                <center><h2 style="color:#39754b">Rating was successful!
-                            
-                                    </h2>
-                                    </center></div>
-
-                            <div class="sendComment"  style="border-style: solid; border-color: #244700; background: radial-gradient(ellipse farthest-corner at center top, #fff482 0%, #bc853c 100%); display: none;" >  
-                                <button type="button" class="close" data-dismiss="modal" style="padding: 20px;" onclick="hideRateField();">x</button>
-                                <table style="width:100%;">
-                                    
-                                    <tr>    
-                                        <td>
-                                            <h3 style="padding-left:250px;">Taste:</h3>
-                                        </td>
-                                        <td class='star' style="font-family: none">
-                                            <fieldset class="rating" id="taste" style="padding-right:100px;">
-                                                <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Awesome!">5 stars</label>
-                                                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
-                                                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
-                                                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
-                                                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Very bad">1 star</label>
-                                            </fieldset>
-                                        </td>
-                                    </tr>
-                                    <tr>    
-                                        <td>
-                                            <h3 style="padding-left:250px;">Prepare Time:</h3>
-                                        </td>
-                                        <td style="font-family: none">
-                                            <fieldset class="rating" id= "prepare">
-                                                <input type="radio" id="prepstar5" name="prep" value="5" /><label for="prepstar5" title="Awesome!">5 stars</label>
-                                                <input type="radio" id="prepstar4" name="prep" value="4" /><label for="prepstar4" title="Pretty good">4 stars</label>
-                                                <input type="radio" id="prepstar3" name="prep" value="3" /><label for="prepstar3" title="Meh">3 stars</label>
-                                                <input type="radio" id="prepstar2" name="prep" value="2" /><label for="prepstar2" title="Kinda bad">2 stars</label>
-                                                <input type="radio" id="prepstar1" name="prep" value="1" /><label for="prepstar1" title="Very bad">1 star</label>
-                                            </fieldset>
-                                        </td>
-                                    </tr>    
-                                        <td>
-                                            <h3 style="padding-left:250px;">Appearance:</h3>
-                                        </td>
-                                        <td style="font-family: none">
-                                            <fieldset class="rating" id="appear">
-                                                <input type="radio" id="appestar5" name="appe" value="5" /><label for="appestar5" title="Awesome!">5 stars</label>
-                                                <input type="radio" id="appestar4" name="appe" value="4" /><label for="appestar4" title="Pretty good">4 stars</label>
-                                                <input type="radio" id="appestar3" name="appe" value="3" /><label for="appestar3" title="Meh">3 stars</label>
-                                                <input type="radio" id="appestar2" name="appe" value="2" /><label for="appestar2" title="Kinda bad">2 stars</label>
-                                                <input type="radio" id="appestar1" name="appe" value="1" /><label for="appestar1" title="Very bad">1 star</label>
-                                            </fieldset>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
+                    <table>
+                        <tr>
+                            <td style="vertical-align: top; width: 275px;">
+                                    <div class="image-column" ><center style = "width: 200px;">
+                                        </br>
+                                        <div style="padding-right: 10px">
+                                            
+                                                <img itemyprop="image" border="2" class="burgerImg" id="burgerImg" border="0" src=""  alt="img" >
+                                            
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <small>The picture is <br>illustration</small>
+                                        <br></center>
+                                    </div>
+                            </td>
+                            <td>
+                                    <div class="" style="padding-left: 55px;">
+                                            <div class="aggregate-rating-container">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div id="_aggregateRating6" class="inline"valign="top" align="left">
+                                                                    <div  id="tv">
+                                                                        <div class="score-container-total">
+                                                                            <div class="overall">Total</div>
+                                                                            <div class="pTotal">-</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="small-circle">
+                                                                        <div class="score-container">
+                                                                            <div class="overall">Taste</div>
+                                                                            <div class="pTaste">-</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="small-circle">
+                                                                        <div class="score-container">
+                                                                            <div class="overall">Prep. time</div>
+                                                                            <div class="pPrepareTime">-</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="small-circle">
+                                                                        <div class="score-container">
+                                                                            <div class="overall">Apperance</div>
+                                                                            <div class="pApperance">-</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-10">
+                                                                    </br>
+                                                                    <div style="padding-bottom: 7px; line-height: 1.5;"><big>Made by <b><a href="placepage.html"><span class="placeName">PlaceName</span></a></b></big>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <section class="press">
+                                                                    <button class="rate" onclick=""><h1></h1></button>
+                                                                </section>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            <div class="stats-container"><small><a name="number" title="Number of total ratings">RATINGS: <big style="color: #777;"><strong><span class="numberOfRatings">-</span></strong></big></a></small>
+                                            </div>
                                             <br>
-                                            <center>
-                                                <textarea style="color:black !important" class="comment" type="text" placeholder="Description"></textarea>
-
-                                            </center>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-
-                                                                                      <section style="float:right;" class="press">
-                                                                                          <br>
-                                                    <button class="send" onclick="sendRating();"><h1>Send</h1></button>
-                                                </section> 
-                                        </td>
-                                    </tr>
-                                </table>
-                                <br> 
-                            </div>
-                            <span class="likebtn-wrapper" data-theme="roundthumb" data-identifier="item_1"></span>
-                            
-                            <div class="reviews-container">
-<!--
-                                        <br>
-                                        <br>
-                                        <div style="padding: 0px 0px 0px 0px;">
-                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="https://res.cloudinary.com/ratebeer/image/upload/w_60,h_60,c_thumb,r_max,g_face/user_The_Osprey.jpg">
+                                            <span class="description">-</span>
+                                            <br>
+                                         
+                
+                
+                                            <div class="sorting-container">
+                                                <span><a href="/toplist.html">Top Burgers</a></span>
+                
+                                                <span> - </span>
+                                                <span><a href="#">Compare</a></span>
+                                                <!-- Add Beer Ticks Here ' JT sp_Ticks @Mode = G1 @BeerID -->
                                             </div>
-                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="3.1 out of 5.0<br /><small>Aroma 5/10<br />Appearance 4/5<br />Taste 5/10<br />Palate 4/5<br />Overall 13/20<br /></small>">3.1</div>
-                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a id="count" class="userName" href="#">Name</a></small>
-                                        <br>
-                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;"></div>
-                                        <br>
+                                            <br>
+                
+                                            <div class="response-success" style="background-color:#c1f2d1; border: 1px solid #9fc4aa; border-radius: 4px; display: none;" >  
+                                                <button type="button" class="close" data-dismiss="modal" style="padding: 20px;" onclick="hideResponse();">&times;</button>
+                                                <center><h2 style="color:#39754b">Rating was successful!
+                                            
+                                                    </h2>
+                                                    </center></div>
+                
+                                            <div class="sendComment"  style="border-style: solid; border-color: #244700; background: radial-gradient(ellipse farthest-corner at center top, #fff482 0%, #bc853c 100%); display: none;" >  
+                                                <button type="button" class="close" data-dismiss="modal" style="padding: 20px;" onclick="hideRateField();">x</button>
+                                                <table style="width:100%;">
+                                                    
+                                                    <tr>    
+                                                        <td>
+                                                            <h3 style="padding-left:250px;">Taste:</h3>
+                                                        </td>
+                                                        <td class='star' style="font-family: none">
+                                                            <fieldset class="rating" id="taste" style="padding-right:100px;">
+                                                                <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Awesome!">5 stars</label>
+                                                                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+                                                                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+                                                                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+                                                                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Very bad">1 star</label>
+                                                            </fieldset>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>    
+                                                        <td>
+                                                            <h3 style="padding-left:250px;">Prepare Time:</h3>
+                                                        </td>
+                                                        <td style="font-family: none">
+                                                            <fieldset class="rating" id= "prepare">
+                                                                <input type="radio" id="prepstar5" name="prep" value="5" /><label for="prepstar5" title="Awesome!">5 stars</label>
+                                                                <input type="radio" id="prepstar4" name="prep" value="4" /><label for="prepstar4" title="Pretty good">4 stars</label>
+                                                                <input type="radio" id="prepstar3" name="prep" value="3" /><label for="prepstar3" title="Meh">3 stars</label>
+                                                                <input type="radio" id="prepstar2" name="prep" value="2" /><label for="prepstar2" title="Kinda bad">2 stars</label>
+                                                                <input type="radio" id="prepstar1" name="prep" value="1" /><label for="prepstar1" title="Very bad">1 star</label>
+                                                            </fieldset>
+                                                        </td>
+                                                    </tr>    
+                                                        <td>
+                                                            <h3 style="padding-left:250px;">Appearance:</h3>
+                                                        </td>
+                                                        <td style="font-family: none">
+                                                            <fieldset class="rating" id="appear">
+                                                                <input type="radio" id="appestar5" name="appe" value="5" /><label for="appestar5" title="Awesome!">5 stars</label>
+                                                                <input type="radio" id="appestar4" name="appe" value="4" /><label for="appestar4" title="Pretty good">4 stars</label>
+                                                                <input type="radio" id="appestar3" name="appe" value="3" /><label for="appestar3" title="Meh">3 stars</label>
+                                                                <input type="radio" id="appestar2" name="appe" value="2" /><label for="appestar2" title="Kinda bad">2 stars</label>
+                                                                <input type="radio" id="appestar1" name="appe" value="1" /><label for="appestar1" title="Very bad">1 star</label>
+                                                            </fieldset>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <br>
+                                                            <center>
+                                                                <textarea style="color:black !important" class="comment" type="text" placeholder="Description"></textarea>
+                
+                                                            </center>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                
+                                                                                                      <section style="float:right;" class="press">
+                                                                                                          <br>
+                                                                    <button class="send" onclick="sendRating();"><h1>Send</h1></button>
+                                                                </section> 
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <br> 
+                                            </div>
+                                            <span class="likebtn-wrapper" data-theme="roundthumb" data-identifier="item_1"></span>
+                                            
+                                            <div class="reviews-container">
+                
+                                            </div>
+                                            
+                                            <!-- end of .tag-container -->
+                
+                                            <br>
+                
+                
+                                            <br>
+                                            <br>
+                
+                                            <div id="taphunter-include" style="padding: 10px 14px; font-size: 12px; line-height: 1.5;"></div>
+                
+                
+                                        </div>
+                            </td>
+                        </tr>
+                    </table>
 
 
-                                        <div style="padding: 0px 0px 0px 0px;">
-                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="/images/icons/icon-user.png">
-                                            </div>
-                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="4 out of 5.0<br /><small>Aroma 5/10<br />Appearance 5/5<br />Taste 8/10<br />Palate 4/5<br />Overall 18/20<br /></small>">4</div>
-                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a href="/user/470386/">TravisHayler&nbsp;(1)</a> - Littlehampton, West Sussex, ENGLAND - MAY 29, 2017 <a href="/RatingsQA.htm">does not count <img height="10" width="10" title="click to see why this rating of Butcombe Gold (Cask) does not count" src="/images/icons/questionmark.gif" align="middle" border="0"></a> </small>
-                                        <br>
-                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;">Great beer, very easy on the pallate and good day time drinking beer at 4.4% </div>
-                                        <br>
-                                        <div style="padding: 0px 0px 0px 0px;">
-                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="https://res.cloudinary.com/ratebeer/image/upload/w_60,h_60,c_thumb,r_max,g_face/user_Fatehunter.jpg">
-                                            </div>
-                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="3.3 out of 5.0<br /><small>Aroma 6/10<br />Appearance 5/5<br />Taste 6/10<br />Palate 3/5<br />Overall 13/20<br /></small>">3.3</div>
-                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a href="/user/160577/">Fatehunter&nbsp;(2567)</a> - Corbett, Oregon, USA - NOV 3, 2016</small>
-                                        <br>
-                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;">Pours a finger of head on a clear straw body. Aroma is fruits and mild grain. Taste has a nice stone fruit flavor with mild bitter. Texture is soft. </div>
-                                        <br>
-                                        <div style="padding: 0px 0px 0px 0px;">
-                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="https://res.cloudinary.com/ratebeer/image/upload/w_60,h_60,c_thumb,r_max,g_face/user_redders1974.jpg">
-                                            </div>
-                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="3.5 out of 5.0<br /><small>Aroma 6/10<br />Appearance 4/5<br />Taste 7/10<br />Palate 4/5<br />Overall 14/20<br /></small>">3.5</div>
-                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a href="/user/357380/">redders1974&nbsp;(1474)</a> - Greater Manchester, ENGLAND - JUL 16, 2016</small>
-                                        <br>
-                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;">On cask bolton cricket clubgolden lasting head good lacing good malts on this malty/bitter finish </div>
-                                        <br>
-                                        <table cellpadding="0" cellspacing="0" border="0" style="margin: 0px 0px 20px 0px;border-bottom: 1px solid #e0e0e0;">
-                                            <tbody>
-                                                <tr>
-                                                    <td width="600" align="center">
-                                                        <div style="width: 468px;padding: 0px 10px 14px 10px;">-->
-                                                            <!-- beerpage468 -->
-                                                        <!--</div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <div style="padding: 0px 0px 0px 0px;">
-                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="https://res.cloudinary.com/ratebeer/image/upload/w_60,h_60,c_thumb,r_max,g_face/user_Brandman.jpg">
-                                            </div>
-                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="2.2 out of 5.0<br /><small>Aroma 4/10<br />Appearance 3/5<br />Taste 4/10<br />Palate 2/5<br />Overall 9/20<br /></small>">2.2</div>
-                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a href="/user/85449/">Brandman&nbsp;(2950)</a> - Helsinki, FINLAND - APR 14, 2016</small>
-                                        <br>
-                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;">Cask. Just comments and numerals due to social interaction. Fudge, bisquit, nuts, earth </div>
-                                        <br>
-                                        <div style="padding: 0px 0px 0px 0px;">
-                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="https://res.cloudinary.com/ratebeer/image/upload/w_60,h_60,c_thumb,r_max,g_face/user_SarkyNorthener.jpg">
-                                            </div>
-                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="2.9 out of 5.0<br /><small>Aroma 5/10<br />Appearance 3/5<br />Taste 6/10<br />Palate 3/5<br />Overall 12/20<br /></small>">2.9</div>
-                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a href="/user/206213/">SarkyNorthener&nbsp;(4631)</a> - West Bromwich (Yorkshire Expat), West Midlands, ENGLAND - NOV 19, 2015</small>
-                                        <br>
-                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;">Cask@acorn Inn, Lichfield. Golden beer with medium head. Aroma is malts. Taste is malts, some hop bitterness, grass and a hint of butter. OK. </div>
-                                        <br>
-                                        <div style="padding: 0px 0px 0px 0px;">
-                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="https://res.cloudinary.com/ratebeer/image/upload/w_60,h_60,c_thumb,r_max,g_face/user_s_hartshorne.jpg">
-                                            </div>
-                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="3 out of 5.0<br /><small>Aroma 6/10<br />Appearance 3/5<br />Taste 6/10<br />Palate 3/5<br />Overall 12/20<br /></small>">3</div>
-                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a href="/user/289628/">s_hartshorne&nbsp;(2784)</a> - wakefield, West Yorkshire, ENGLAND - NOV 7, 2015</small>
-                                        <br>
-                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;">Cask samuel smiths corby!!! Amber thin head lace. Aroma toffee malts taste same some fruits lifht hoppy bitter finish ok body. Ok at best. </div>
-                                        <br>
-                                        <div style="padding: 0px 0px 0px 0px;">
-                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="https://res.cloudinary.com/ratebeer/image/upload/w_60,h_60,c_thumb,r_max,g_face/user_Stuu666.jpg">
-                                            </div>
-                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="3 out of 5.0<br /><small>Aroma 6/10<br />Appearance 3/5<br />Taste 6/10<br />Palate 3/5<br />Overall 12/20<br /></small>">3</div>
-                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a href="/user/178977/">Stuu666&nbsp;(13436)</a> - Edinburgh, SCOTLAND - NOV 7, 2015</small>
-                                        <br>
-                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;">Cask at the Guildford arms. Pours clear golden, nose is cereal, toffee, taste is sweet toffee, cereal, grainy, floral. </div>
-                                        <br>
-                                        <div style="padding: 0px 0px 0px 0px;">
-                                            <div style="width: 70px; float: left; padding-right: 10px;"><img style="max-width: 60px; max-height: 60px; height: auto; width: auto; border-radius: 50%;" width="60" onerror="this.onerror=null;this.src='/images/icons/icon-user.png';" src="https://res.cloudinary.com/ratebeer/image/upload/w_60,h_60,c_thumb,r_max,g_face/user_Towey1989.jpg">
-                                            </div>
-                                            <div style="display:inline; padding: 0px 0px; font-size: 24px; font-weight: bold; color: #036;" title="2.9 out of 5.0<br /><small>Aroma 5/10<br />Appearance 4/5<br />Taste 6/10<br />Palate 3/5<br />Overall 11/20<br /></small>">2.9</div>
-                                        </div><small style="color: #666666; font-size: 12px; font-weight: bold;"><a href="/user/352852/">Towey1989&nbsp;(2837)</a> - Stoke On Trent, Staffordshire, ENGLAND - OCT 28, 2015</small>
-                                        <br>
-                                        <div style="padding: 20px 10px 20px 0px; border-bottom: 1px solid #e0e0e0; line-height: 1.5;">Cask at The Roebuck, Leek (Titanic) A clear deep golden colour with a medium white head. Aroma of caramel, some fruit, slight biscuit and subtle earthy hops. Taste is similar of caramel, maybe butterscotch, some biscuit, slight fruit and subtle earthy hops. Light bodied and soft carbonation. A soft, earthy hop bitterness in the finish. Not a lot to say about this beer, boring but drinkable. </div>
-                                        <br>-->
-                            </div>
-                            
-                            <!-- end of .tag-container -->
-
-                            <br>
-
-
-                            <br>
-                            <br>
-
-                            <div id="taphunter-include" style="padding: 10px 14px; font-size: 12px; line-height: 1.5;"></div>
-
-
-                        </div>
 
 
                     </div>
